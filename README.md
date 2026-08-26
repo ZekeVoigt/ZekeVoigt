@@ -2,7 +2,7 @@
 
 Yall do to much with these readmes lets keep it short 
 
-Im dope and I building dope things, and i'm trying to change the world.
+Im dope and I building dope things, and i'm changing the world.
 
 ## Current project ♾️
 
