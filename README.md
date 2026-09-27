@@ -8,11 +8,4 @@ I like building cool things
 
 ## Activity
 
-![Contributions per day](assets/contributions.svg)
-
-![AI tokens per day](assets/tokens.svg)
-
-**Time coding this week**
-
-<!--START_SECTION:waka-->
-<!--END_SECTION:waka-->
+[![AI tokens per day, one square per day](assets/activity.svg)](https://zekevoigt.github.io/ZekeVoigt/)

@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeke's activity</title>
+<style>
+  :root { color-scheme: light dark; --bg: #ffffff; --tip: #25292e; --tip-fg: #ffffff; --muted: #9198a1; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0d1117; --tip: #3d444d; } }
+  html, body { margin: 0; background: var(--bg); }
+  body { min-height: 100vh; display: grid; place-items: center; padding: 16px; box-sizing: border-box; }
+  .wrap { max-width: 100%; overflow-x: auto; }
+  svg { display: block; }
+  rect[tabindex] { cursor: pointer; outline: none; }
+  rect[tabindex]:hover, rect[tabindex]:focus-visible { stroke: var(--muted); stroke-width: 1.5; }
+  #tip { position: fixed; pointer-events: none; opacity: 0; transform: translate(-50%, calc(-100% - 10px));
+         background: var(--tip); color: var(--tip-fg); border-radius: 6px; padding: 7px 10px;
+         font: 12px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+         white-space: nowrap; transition: opacity .08s; }
+  #tip::after { content: ""; position: absolute; left: 50%; top: 100%; margin-left: -5px;
+                border: 5px solid transparent; border-top-color: var(--tip); }
+  #tip b { font-weight: 600; }
+  #tip .dim { color: #b7bdc8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg xmlns="http://www.w3.org/2000/svg" width="733" height="169" viewBox="0 0 733 169" role="img" aria-label="7.7B AI tokens in the last year, one square per day">
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }
+  .title { fill: #1f2328; font-size: 16px; }
+  .lbl { fill: #59636e; font-size: 12px; }
+  .c { stroke: rgba(31, 35, 40, 0.05); stroke-width: 1; }
+  .l0 { fill: #eff2f5; }
+  .l1 { fill: #aceebb; }
+  .l2 { fill: #4ac26b; }
+  .l3 { fill: #2da44e; }
+  .l4 { fill: #116329; }
+  @media (prefers-color-scheme: dark) {
+    .title { fill: #f0f6fc; }
+    .lbl { fill: #9198a1; }
+    .c { stroke: rgba(240, 246, 252, 0.05); }
+    .l0 { fill: #151b23; }
+    .l1 { fill: #033a16; }
+    .l2 { fill: #196c2e; }
+    .l3 { fill: #2ea043; }
+    .l4 { fill: #56d364; }
+  }
+</style>
+<text class="title" x="32" y="18">7.7B AI tokens in the last year</text>
+<text class="lbl" x="45" y="36">Oct</text>
+<text class="lbl" x="97" y="36">Nov</text>
+<text class="lbl" x="162" y="36">Dec</text>
+<text class="lbl" x="214" y="36">Jan</text>
+<text class="lbl" x="266" y="36">Feb</text>
+<text class="lbl" x="318" y="36">Mar</text>
+<text class="lbl" x="383" y="36">Apr</text>
+<text class="lbl" x="435" y="36">May</text>
+<text class="lbl" x="500" y="36">Jun</text>
+<text class="lbl" x="552" y="36">Jul</text>
+<text class="lbl" x="604" y="36">Aug</text>
+<text class="lbl" x="669" y="36">Sep</text>
+<text class="lbl" x="26" y="66" text-anchor="end">Mon</text>
+<text class="lbl" x="26" y="92" text-anchor="end">Wed</text>
+<text class="lbl" x="26" y="118" text-anchor="end">Fri</text>
+<rect class="c l0" x="32" y="44" width="10" height="10" rx="2" tabindex="0" data-date="September 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="32" y="57" width="10" height="10" rx="2" tabindex="0" data-date="September 29th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="32" y="70" width="10" height="10" rx="2" tabindex="0" data-date="September 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="32" y="83" width="10" height="10" rx="2" tabindex="0" data-date="October 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="32" y="96" width="10" height="10" rx="2" tabindex="0" data-date="October 2nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="32" y="109" width="10" height="10" rx="2" tabindex="0" data-date="October 3rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="32" y="122" width="10" height="10" rx="2" tabindex="0" data-date="October 4th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="45" y="44" width="10" height="10" rx="2" tabindex="0" data-date="October 5th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="45" y="57" width="10" height="10" rx="2" tabindex="0" data-date="October 6th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="45" y="70" width="10" height="10" rx="2" tabindex="0" data-date="October 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="45" y="83" width="10" height="10" rx="2" tabindex="0" data-date="October 8th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="45" y="96" width="10" height="10" rx="2" tabindex="0" data-date="October 9th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="45" y="109" width="10" height="10" rx="2" tabindex="0" data-date="October 10th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="45" y="122" width="10" height="10" rx="2" tabindex="0" data-date="October 11th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="58" y="44" width="10" height="10" rx="2" tabindex="0" data-date="October 12th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="58" y="57" width="10" height="10" rx="2" tabindex="0" data-date="October 13th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="58" y="70" width="10" height="10" rx="2" tabindex="0" data-date="October 14th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="58" y="83" width="10" height="10" rx="2" tabindex="0" data-date="October 15th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="58" y="96" width="10" height="10" rx="2" tabindex="0" data-date="October 16th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="58" y="109" width="10" height="10" rx="2" tabindex="0" data-date="October 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="58" y="122" width="10" height="10" rx="2" tabindex="0" data-date="October 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="71" y="44" width="10" height="10" rx="2" tabindex="0" data-date="October 19th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="71" y="57" width="10" height="10" rx="2" tabindex="0" data-date="October 20th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="71" y="70" width="10" height="10" rx="2" tabindex="0" data-date="October 21st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="71" y="83" width="10" height="10" rx="2" tabindex="0" data-date="October 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="71" y="96" width="10" height="10" rx="2" tabindex="0" data-date="October 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="71" y="109" width="10" height="10" rx="2" tabindex="0" data-date="October 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="71" y="122" width="10" height="10" rx="2" tabindex="0" data-date="October 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="84" y="44" width="10" height="10" rx="2" tabindex="0" data-date="October 26th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="84" y="57" width="10" height="10" rx="2" tabindex="0" data-date="October 27th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="84" y="70" width="10" height="10" rx="2" tabindex="0" data-date="October 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="84" y="83" width="10" height="10" rx="2" tabindex="0" data-date="October 29th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="84" y="96" width="10" height="10" rx="2" tabindex="0" data-date="October 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="84" y="109" width="10" height="10" rx="2" tabindex="0" data-date="October 31st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="84" y="122" width="10" height="10" rx="2" tabindex="0" data-date="November 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="97" y="44" width="10" height="10" rx="2" tabindex="0" data-date="November 2nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="97" y="57" width="10" height="10" rx="2" tabindex="0" data-date="November 3rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="97" y="70" width="10" height="10" rx="2" tabindex="0" data-date="November 4th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="97" y="83" width="10" height="10" rx="2" tabindex="0" data-date="November 5th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="97" y="96" width="10" height="10" rx="2" tabindex="0" data-date="November 6th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="97" y="109" width="10" height="10" rx="2" tabindex="0" data-date="November 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="97" y="122" width="10" height="10" rx="2" tabindex="0" data-date="November 8th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="110" y="44" width="10" height="10" rx="2" tabindex="0" data-date="November 9th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="110" y="57" width="10" height="10" rx="2" tabindex="0" data-date="November 10th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="110" y="70" width="10" height="10" rx="2" tabindex="0" data-date="November 11th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="110" y="83" width="10" height="10" rx="2" tabindex="0" data-date="November 12th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="110" y="96" width="10" height="10" rx="2" tabindex="0" data-date="November 13th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="110" y="109" width="10" height="10" rx="2" tabindex="0" data-date="November 14th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="110" y="122" width="10" height="10" rx="2" tabindex="0" data-date="November 15th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="123" y="44" width="10" height="10" rx="2" tabindex="0" data-date="November 16th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="123" y="57" width="10" height="10" rx="2" tabindex="0" data-date="November 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="123" y="70" width="10" height="10" rx="2" tabindex="0" data-date="November 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="123" y="83" width="10" height="10" rx="2" tabindex="0" data-date="November 19th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="123" y="96" width="10" height="10" rx="2" tabindex="0" data-date="November 20th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="123" y="109" width="10" height="10" rx="2" tabindex="0" data-date="November 21st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="123" y="122" width="10" height="10" rx="2" tabindex="0" data-date="November 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="136" y="44" width="10" height="10" rx="2" tabindex="0" data-date="November 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="136" y="57" width="10" height="10" rx="2" tabindex="0" data-date="November 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="136" y="70" width="10" height="10" rx="2" tabindex="0" data-date="November 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="136" y="83" width="10" height="10" rx="2" tabindex="0" data-date="November 26th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="136" y="96" width="10" height="10" rx="2" tabindex="0" data-date="November 27th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="136" y="109" width="10" height="10" rx="2" tabindex="0" data-date="November 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="136" y="122" width="10" height="10" rx="2" tabindex="0" data-date="November 29th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="149" y="44" width="10" height="10" rx="2" tabindex="0" data-date="November 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="149" y="57" width="10" height="10" rx="2" tabindex="0" data-date="December 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="149" y="70" width="10" height="10" rx="2" tabindex="0" data-date="December 2nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="149" y="83" width="10" height="10" rx="2" tabindex="0" data-date="December 3rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="149" y="96" width="10" height="10" rx="2" tabindex="0" data-date="December 4th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="149" y="109" width="10" height="10" rx="2" tabindex="0" data-date="December 5th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="149" y="122" width="10" height="10" rx="2" tabindex="0" data-date="December 6th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="162" y="44" width="10" height="10" rx="2" tabindex="0" data-date="December 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="162" y="57" width="10" height="10" rx="2" tabindex="0" data-date="December 8th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="162" y="70" width="10" height="10" rx="2" tabindex="0" data-date="December 9th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="162" y="83" width="10" height="10" rx="2" tabindex="0" data-date="December 10th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="162" y="96" width="10" height="10" rx="2" tabindex="0" data-date="December 11th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="162" y="109" width="10" height="10" rx="2" tabindex="0" data-date="December 12th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="162" y="122" width="10" height="10" rx="2" tabindex="0" data-date="December 13th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="175" y="44" width="10" height="10" rx="2" tabindex="0" data-date="December 14th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="175" y="57" width="10" height="10" rx="2" tabindex="0" data-date="December 15th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="175" y="70" width="10" height="10" rx="2" tabindex="0" data-date="December 16th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="175" y="83" width="10" height="10" rx="2" tabindex="0" data-date="December 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="175" y="96" width="10" height="10" rx="2" tabindex="0" data-date="December 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="175" y="109" width="10" height="10" rx="2" tabindex="0" data-date="December 19th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="175" y="122" width="10" height="10" rx="2" tabindex="0" data-date="December 20th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="188" y="44" width="10" height="10" rx="2" tabindex="0" data-date="December 21st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="188" y="57" width="10" height="10" rx="2" tabindex="0" data-date="December 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="188" y="70" width="10" height="10" rx="2" tabindex="0" data-date="December 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="188" y="83" width="10" height="10" rx="2" tabindex="0" data-date="December 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="188" y="96" width="10" height="10" rx="2" tabindex="0" data-date="December 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="188" y="109" width="10" height="10" rx="2" tabindex="0" data-date="December 26th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="188" y="122" width="10" height="10" rx="2" tabindex="0" data-date="December 27th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="201" y="44" width="10" height="10" rx="2" tabindex="0" data-date="December 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="201" y="57" width="10" height="10" rx="2" tabindex="0" data-date="December 29th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="201" y="70" width="10" height="10" rx="2" tabindex="0" data-date="December 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="201" y="83" width="10" height="10" rx="2" tabindex="0" data-date="December 31st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="201" y="96" width="10" height="10" rx="2" tabindex="0" data-date="January 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="201" y="109" width="10" height="10" rx="2" tabindex="0" data-date="January 2nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="201" y="122" width="10" height="10" rx="2" tabindex="0" data-date="January 3rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="214" y="44" width="10" height="10" rx="2" tabindex="0" data-date="January 4th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="214" y="57" width="10" height="10" rx="2" tabindex="0" data-date="January 5th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="214" y="70" width="10" height="10" rx="2" tabindex="0" data-date="January 6th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="214" y="83" width="10" height="10" rx="2" tabindex="0" data-date="January 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="214" y="96" width="10" height="10" rx="2" tabindex="0" data-date="January 8th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="214" y="109" width="10" height="10" rx="2" tabindex="0" data-date="January 9th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="214" y="122" width="10" height="10" rx="2" tabindex="0" data-date="January 10th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="227" y="44" width="10" height="10" rx="2" tabindex="0" data-date="January 11th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="227" y="57" width="10" height="10" rx="2" tabindex="0" data-date="January 12th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="227" y="70" width="10" height="10" rx="2" tabindex="0" data-date="January 13th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="227" y="83" width="10" height="10" rx="2" tabindex="0" data-date="January 14th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="227" y="96" width="10" height="10" rx="2" tabindex="0" data-date="January 15th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="227" y="109" width="10" height="10" rx="2" tabindex="0" data-date="January 16th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="227" y="122" width="10" height="10" rx="2" tabindex="0" data-date="January 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="240" y="44" width="10" height="10" rx="2" tabindex="0" data-date="January 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="240" y="57" width="10" height="10" rx="2" tabindex="0" data-date="January 19th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="240" y="70" width="10" height="10" rx="2" tabindex="0" data-date="January 20th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="240" y="83" width="10" height="10" rx="2" tabindex="0" data-date="January 21st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="240" y="96" width="10" height="10" rx="2" tabindex="0" data-date="January 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="240" y="109" width="10" height="10" rx="2" tabindex="0" data-date="January 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="240" y="122" width="10" height="10" rx="2" tabindex="0" data-date="January 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="253" y="44" width="10" height="10" rx="2" tabindex="0" data-date="January 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="253" y="57" width="10" height="10" rx="2" tabindex="0" data-date="January 26th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="253" y="70" width="10" height="10" rx="2" tabindex="0" data-date="January 27th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="253" y="83" width="10" height="10" rx="2" tabindex="0" data-date="January 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="253" y="96" width="10" height="10" rx="2" tabindex="0" data-date="January 29th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="253" y="109" width="10" height="10" rx="2" tabindex="0" data-date="January 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="253" y="122" width="10" height="10" rx="2" tabindex="0" data-date="January 31st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="266" y="44" width="10" height="10" rx="2" tabindex="0" data-date="February 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="266" y="57" width="10" height="10" rx="2" tabindex="0" data-date="February 2nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="266" y="70" width="10" height="10" rx="2" tabindex="0" data-date="February 3rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l3" x="266" y="83" width="10" height="10" rx="2" tabindex="0" data-date="February 4th" data-t="43619808" data-c="0" data-s="0"/>
+<rect class="c l1" x="266" y="96" width="10" height="10" rx="2" tabindex="0" data-date="February 5th" data-t="1216302" data-c="0" data-s="0"/>
+<rect class="c l0" x="266" y="109" width="10" height="10" rx="2" tabindex="0" data-date="February 6th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="266" y="122" width="10" height="10" rx="2" tabindex="0" data-date="February 7th" data-t="6140235" data-c="0" data-s="0"/>
+<rect class="c l0" x="279" y="44" width="10" height="10" rx="2" tabindex="0" data-date="February 8th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="279" y="57" width="10" height="10" rx="2" tabindex="0" data-date="February 9th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="279" y="70" width="10" height="10" rx="2" tabindex="0" data-date="February 10th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="279" y="83" width="10" height="10" rx="2" tabindex="0" data-date="February 11th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="279" y="96" width="10" height="10" rx="2" tabindex="0" data-date="February 12th" data-t="1753076" data-c="0" data-s="0"/>
+<rect class="c l2" x="279" y="109" width="10" height="10" rx="2" tabindex="0" data-date="February 13th" data-t="21921620" data-c="0" data-s="0"/>
+<rect class="c l0" x="279" y="122" width="10" height="10" rx="2" tabindex="0" data-date="February 14th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="292" y="44" width="10" height="10" rx="2" tabindex="0" data-date="February 15th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="292" y="57" width="10" height="10" rx="2" tabindex="0" data-date="February 16th" data-t="4949917" data-c="0" data-s="0"/>
+<rect class="c l0" x="292" y="70" width="10" height="10" rx="2" tabindex="0" data-date="February 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="292" y="83" width="10" height="10" rx="2" tabindex="0" data-date="February 18th" data-t="0" data-c="1" data-s="0"/>
+<rect class="c l3" x="292" y="96" width="10" height="10" rx="2" tabindex="0" data-date="February 19th" data-t="48238350" data-c="0" data-s="0"/>
+<rect class="c l3" x="292" y="109" width="10" height="10" rx="2" tabindex="0" data-date="February 20th" data-t="42536838" data-c="0" data-s="0"/>
+<rect class="c l3" x="292" y="122" width="10" height="10" rx="2" tabindex="0" data-date="February 21st" data-t="41329296" data-c="0" data-s="0"/>
+<rect class="c l1" x="305" y="44" width="10" height="10" rx="2" tabindex="0" data-date="February 22nd" data-t="7569428" data-c="0" data-s="0"/>
+<rect class="c l3" x="305" y="57" width="10" height="10" rx="2" tabindex="0" data-date="February 23rd" data-t="72830388" data-c="0" data-s="0"/>
+<rect class="c l0" x="305" y="70" width="10" height="10" rx="2" tabindex="0" data-date="February 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="305" y="83" width="10" height="10" rx="2" tabindex="0" data-date="February 25th" data-t="132262" data-c="0" data-s="0"/>
+<rect class="c l2" x="305" y="96" width="10" height="10" rx="2" tabindex="0" data-date="February 26th" data-t="13243548" data-c="0" data-s="0"/>
+<rect class="c l2" x="305" y="109" width="10" height="10" rx="2" tabindex="0" data-date="February 27th" data-t="35805534" data-c="0" data-s="0"/>
+<rect class="c l0" x="305" y="122" width="10" height="10" rx="2" tabindex="0" data-date="February 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="318" y="44" width="10" height="10" rx="2" tabindex="0" data-date="March 1st" data-t="1004968" data-c="0" data-s="0"/>
+<rect class="c l2" x="318" y="57" width="10" height="10" rx="2" tabindex="0" data-date="March 2nd" data-t="30266794" data-c="0" data-s="0"/>
+<rect class="c l1" x="318" y="70" width="10" height="10" rx="2" tabindex="0" data-date="March 3rd" data-t="6913143" data-c="0" data-s="0"/>
+<rect class="c l3" x="318" y="83" width="10" height="10" rx="2" tabindex="0" data-date="March 4th" data-t="52428220" data-c="0" data-s="0"/>
+<rect class="c l3" x="318" y="96" width="10" height="10" rx="2" tabindex="0" data-date="March 5th" data-t="53557283" data-c="0" data-s="0"/>
+<rect class="c l2" x="318" y="109" width="10" height="10" rx="2" tabindex="0" data-date="March 6th" data-t="15442427" data-c="0" data-s="0"/>
+<rect class="c l3" x="318" y="122" width="10" height="10" rx="2" tabindex="0" data-date="March 7th" data-t="63815548" data-c="0" data-s="0"/>
+<rect class="c l2" x="331" y="44" width="10" height="10" rx="2" tabindex="0" data-date="March 8th" data-t="21315643" data-c="0" data-s="0"/>
+<rect class="c l0" x="331" y="57" width="10" height="10" rx="2" tabindex="0" data-date="March 9th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l3" x="331" y="70" width="10" height="10" rx="2" tabindex="0" data-date="March 10th" data-t="46935533" data-c="0" data-s="0"/>
+<rect class="c l2" x="331" y="83" width="10" height="10" rx="2" tabindex="0" data-date="March 11th" data-t="36443787" data-c="0" data-s="0"/>
+<rect class="c l3" x="331" y="96" width="10" height="10" rx="2" tabindex="0" data-date="March 12th" data-t="50770742" data-c="0" data-s="0"/>
+<rect class="c l2" x="331" y="109" width="10" height="10" rx="2" tabindex="0" data-date="March 13th" data-t="17659560" data-c="0" data-s="0"/>
+<rect class="c l3" x="331" y="122" width="10" height="10" rx="2" tabindex="0" data-date="March 14th" data-t="61122214" data-c="0" data-s="0"/>
+<rect class="c l3" x="344" y="44" width="10" height="10" rx="2" tabindex="0" data-date="March 15th" data-t="72654630" data-c="0" data-s="0"/>
+<rect class="c l3" x="344" y="57" width="10" height="10" rx="2" tabindex="0" data-date="March 16th" data-t="67602573" data-c="0" data-s="0"/>
+<rect class="c l3" x="344" y="70" width="10" height="10" rx="2" tabindex="0" data-date="March 17th" data-t="39525045" data-c="0" data-s="0"/>
+<rect class="c l4" x="344" y="83" width="10" height="10" rx="2" tabindex="0" data-date="March 18th" data-t="85887775" data-c="0" data-s="0"/>
+<rect class="c l4" x="344" y="96" width="10" height="10" rx="2" tabindex="0" data-date="March 19th" data-t="193485573" data-c="0" data-s="0"/>
+<rect class="c l4" x="344" y="109" width="10" height="10" rx="2" tabindex="0" data-date="March 20th" data-t="199880249" data-c="0" data-s="0"/>
+<rect class="c l4" x="344" y="122" width="10" height="10" rx="2" tabindex="0" data-date="March 21st" data-t="112852844" data-c="0" data-s="0"/>
+<rect class="c l3" x="357" y="44" width="10" height="10" rx="2" tabindex="0" data-date="March 22nd" data-t="61696640" data-c="0" data-s="0"/>
+<rect class="c l2" x="357" y="57" width="10" height="10" rx="2" tabindex="0" data-date="March 23rd" data-t="19669914" data-c="0" data-s="0"/>
+<rect class="c l2" x="357" y="70" width="10" height="10" rx="2" tabindex="0" data-date="March 24th" data-t="32678298" data-c="0" data-s="0"/>
+<rect class="c l4" x="357" y="83" width="10" height="10" rx="2" tabindex="0" data-date="March 25th" data-t="155307925" data-c="0" data-s="0"/>
+<rect class="c l4" x="357" y="96" width="10" height="10" rx="2" tabindex="0" data-date="March 26th" data-t="87364770" data-c="0" data-s="0"/>
+<rect class="c l4" x="357" y="109" width="10" height="10" rx="2" tabindex="0" data-date="March 27th" data-t="172615807" data-c="0" data-s="0"/>
+<rect class="c l3" x="357" y="122" width="10" height="10" rx="2" tabindex="0" data-date="March 28th" data-t="70084451" data-c="0" data-s="0"/>
+<rect class="c l3" x="370" y="44" width="10" height="10" rx="2" tabindex="0" data-date="March 29th" data-t="63687634" data-c="0" data-s="0"/>
+<rect class="c l4" x="370" y="57" width="10" height="10" rx="2" tabindex="0" data-date="March 30th" data-t="183398650" data-c="0" data-s="0"/>
+<rect class="c l4" x="370" y="70" width="10" height="10" rx="2" tabindex="0" data-date="March 31st" data-t="124134311" data-c="0" data-s="0"/>
+<rect class="c l4" x="370" y="83" width="10" height="10" rx="2" tabindex="0" data-date="April 1st" data-t="186247107" data-c="0" data-s="0"/>
+<rect class="c l4" x="370" y="96" width="10" height="10" rx="2" tabindex="0" data-date="April 2nd" data-t="285108218" data-c="0" data-s="0"/>
+<rect class="c l4" x="370" y="109" width="10" height="10" rx="2" tabindex="0" data-date="April 3rd" data-t="194882017" data-c="0" data-s="0"/>
+<rect class="c l4" x="370" y="122" width="10" height="10" rx="2" tabindex="0" data-date="April 4th" data-t="87996950" data-c="0" data-s="0"/>
+<rect class="c l4" x="383" y="44" width="10" height="10" rx="2" tabindex="0" data-date="April 5th" data-t="112225278" data-c="0" data-s="0"/>
+<rect class="c l4" x="383" y="57" width="10" height="10" rx="2" tabindex="0" data-date="April 6th" data-t="78152823" data-c="0" data-s="0"/>
+<rect class="c l4" x="383" y="70" width="10" height="10" rx="2" tabindex="0" data-date="April 7th" data-t="105829242" data-c="0" data-s="0"/>
+<rect class="c l4" x="383" y="83" width="10" height="10" rx="2" tabindex="0" data-date="April 8th" data-t="135067478" data-c="0" data-s="0"/>
+<rect class="c l4" x="383" y="96" width="10" height="10" rx="2" tabindex="0" data-date="April 9th" data-t="116519059" data-c="0" data-s="0"/>
+<rect class="c l3" x="383" y="109" width="10" height="10" rx="2" tabindex="0" data-date="April 10th" data-t="51400687" data-c="0" data-s="0"/>
+<rect class="c l2" x="383" y="122" width="10" height="10" rx="2" tabindex="0" data-date="April 11th" data-t="28322701" data-c="0" data-s="0"/>
+<rect class="c l3" x="396" y="44" width="10" height="10" rx="2" tabindex="0" data-date="April 12th" data-t="51225961" data-c="0" data-s="0"/>
+<rect class="c l2" x="396" y="57" width="10" height="10" rx="2" tabindex="0" data-date="April 13th" data-t="27027425" data-c="0" data-s="0"/>
+<rect class="c l3" x="396" y="70" width="10" height="10" rx="2" tabindex="0" data-date="April 14th" data-t="37783951" data-c="0" data-s="0"/>
+<rect class="c l4" x="396" y="83" width="10" height="10" rx="2" tabindex="0" data-date="April 15th" data-t="87897536" data-c="0" data-s="0"/>
+<rect class="c l2" x="396" y="96" width="10" height="10" rx="2" tabindex="0" data-date="April 16th" data-t="28027549" data-c="0" data-s="0"/>
+<rect class="c l1" x="396" y="109" width="10" height="10" rx="2" tabindex="0" data-date="April 17th" data-t="9002365" data-c="0" data-s="0"/>
+<rect class="c l4" x="396" y="122" width="10" height="10" rx="2" tabindex="0" data-date="April 18th" data-t="86211725" data-c="0" data-s="0"/>
+<rect class="c l2" x="409" y="44" width="10" height="10" rx="2" tabindex="0" data-date="April 19th" data-t="31717287" data-c="0" data-s="0"/>
+<rect class="c l3" x="409" y="57" width="10" height="10" rx="2" tabindex="0" data-date="April 20th" data-t="74169434" data-c="0" data-s="0"/>
+<rect class="c l4" x="409" y="70" width="10" height="10" rx="2" tabindex="0" data-date="April 21st" data-t="125907270" data-c="0" data-s="0"/>
+<rect class="c l3" x="409" y="83" width="10" height="10" rx="2" tabindex="0" data-date="April 22nd" data-t="37811311" data-c="0" data-s="0"/>
+<rect class="c l3" x="409" y="96" width="10" height="10" rx="2" tabindex="0" data-date="April 23rd" data-t="37703221" data-c="0" data-s="0"/>
+<rect class="c l2" x="409" y="109" width="10" height="10" rx="2" tabindex="0" data-date="April 24th" data-t="28294245" data-c="0" data-s="0"/>
+<rect class="c l2" x="409" y="122" width="10" height="10" rx="2" tabindex="0" data-date="April 25th" data-t="12769399" data-c="0" data-s="0"/>
+<rect class="c l3" x="422" y="44" width="10" height="10" rx="2" tabindex="0" data-date="April 26th" data-t="54813496" data-c="0" data-s="0"/>
+<rect class="c l0" x="422" y="57" width="10" height="10" rx="2" tabindex="0" data-date="April 27th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l2" x="422" y="70" width="10" height="10" rx="2" tabindex="0" data-date="April 28th" data-t="35516737" data-c="0" data-s="0"/>
+<rect class="c l3" x="422" y="83" width="10" height="10" rx="2" tabindex="0" data-date="April 29th" data-t="60019441" data-c="0" data-s="0"/>
+<rect class="c l2" x="422" y="96" width="10" height="10" rx="2" tabindex="0" data-date="April 30th" data-t="26813814" data-c="0" data-s="0"/>
+<rect class="c l2" x="422" y="109" width="10" height="10" rx="2" tabindex="0" data-date="May 1st" data-t="21916067" data-c="0" data-s="0"/>
+<rect class="c l3" x="422" y="122" width="10" height="10" rx="2" tabindex="0" data-date="May 2nd" data-t="42855950" data-c="0" data-s="0"/>
+<rect class="c l2" x="435" y="44" width="10" height="10" rx="2" tabindex="0" data-date="May 3rd" data-t="15374032" data-c="0" data-s="0"/>
+<rect class="c l4" x="435" y="57" width="10" height="10" rx="2" tabindex="0" data-date="May 4th" data-t="88568545" data-c="0" data-s="0"/>
+<rect class="c l3" x="435" y="70" width="10" height="10" rx="2" tabindex="0" data-date="May 5th" data-t="40637240" data-c="0" data-s="0"/>
+<rect class="c l2" x="435" y="83" width="10" height="10" rx="2" tabindex="0" data-date="May 6th" data-t="28444589" data-c="0" data-s="0"/>
+<rect class="c l3" x="435" y="96" width="10" height="10" rx="2" tabindex="0" data-date="May 7th" data-t="58933283" data-c="0" data-s="0"/>
+<rect class="c l2" x="435" y="109" width="10" height="10" rx="2" tabindex="0" data-date="May 8th" data-t="29846034" data-c="0" data-s="0"/>
+<rect class="c l4" x="435" y="122" width="10" height="10" rx="2" tabindex="0" data-date="May 9th" data-t="89868429" data-c="0" data-s="0"/>
+<rect class="c l2" x="448" y="44" width="10" height="10" rx="2" tabindex="0" data-date="May 10th" data-t="37571467" data-c="0" data-s="0"/>
+<rect class="c l1" x="448" y="57" width="10" height="10" rx="2" tabindex="0" data-date="May 11th" data-t="11500197" data-c="0" data-s="0"/>
+<rect class="c l0" x="448" y="70" width="10" height="10" rx="2" tabindex="0" data-date="May 12th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l2" x="448" y="83" width="10" height="10" rx="2" tabindex="0" data-date="May 13th" data-t="27575763" data-c="0" data-s="0"/>
+<rect class="c l2" x="448" y="96" width="10" height="10" rx="2" tabindex="0" data-date="May 14th" data-t="12826106" data-c="0" data-s="0"/>
+<rect class="c l1" x="448" y="109" width="10" height="10" rx="2" tabindex="0" data-date="May 15th" data-t="10794114" data-c="0" data-s="0"/>
+<rect class="c l1" x="448" y="122" width="10" height="10" rx="2" tabindex="0" data-date="May 16th" data-t="10334003" data-c="0" data-s="0"/>
+<rect class="c l1" x="461" y="44" width="10" height="10" rx="2" tabindex="0" data-date="May 17th" data-t="6960493" data-c="0" data-s="0"/>
+<rect class="c l0" x="461" y="57" width="10" height="10" rx="2" tabindex="0" data-date="May 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l2" x="461" y="70" width="10" height="10" rx="2" tabindex="0" data-date="May 19th" data-t="37670974" data-c="0" data-s="0"/>
+<rect class="c l0" x="461" y="83" width="10" height="10" rx="2" tabindex="0" data-date="May 20th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="461" y="96" width="10" height="10" rx="2" tabindex="0" data-date="May 21st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="461" y="109" width="10" height="10" rx="2" tabindex="0" data-date="May 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="461" y="122" width="10" height="10" rx="2" tabindex="0" data-date="May 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="474" y="44" width="10" height="10" rx="2" tabindex="0" data-date="May 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="474" y="57" width="10" height="10" rx="2" tabindex="0" data-date="May 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l3" x="474" y="70" width="10" height="10" rx="2" tabindex="0" data-date="May 26th" data-t="37928445" data-c="0" data-s="0"/>
+<rect class="c l3" x="474" y="83" width="10" height="10" rx="2" tabindex="0" data-date="May 27th" data-t="73910205" data-c="0" data-s="0"/>
+<rect class="c l1" x="474" y="96" width="10" height="10" rx="2" tabindex="0" data-date="May 28th" data-t="5543313" data-c="0" data-s="0"/>
+<rect class="c l1" x="474" y="109" width="10" height="10" rx="2" tabindex="0" data-date="May 29th" data-t="10089541" data-c="0" data-s="0"/>
+<rect class="c l0" x="474" y="122" width="10" height="10" rx="2" tabindex="0" data-date="May 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="487" y="44" width="10" height="10" rx="2" tabindex="0" data-date="May 31st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="487" y="57" width="10" height="10" rx="2" tabindex="0" data-date="June 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="487" y="70" width="10" height="10" rx="2" tabindex="0" data-date="June 2nd" data-t="10429063" data-c="0" data-s="0"/>
+<rect class="c l0" x="487" y="83" width="10" height="10" rx="2" tabindex="0" data-date="June 3rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="487" y="96" width="10" height="10" rx="2" tabindex="0" data-date="June 4th" data-t="2808026" data-c="0" data-s="0"/>
+<rect class="c l0" x="487" y="109" width="10" height="10" rx="2" tabindex="0" data-date="June 5th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="487" y="122" width="10" height="10" rx="2" tabindex="0" data-date="June 6th" data-t="480797" data-c="0" data-s="0"/>
+<rect class="c l0" x="500" y="44" width="10" height="10" rx="2" tabindex="0" data-date="June 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="500" y="57" width="10" height="10" rx="2" tabindex="0" data-date="June 8th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="500" y="70" width="10" height="10" rx="2" tabindex="0" data-date="June 9th" data-t="2050559" data-c="0" data-s="0"/>
+<rect class="c l1" x="500" y="83" width="10" height="10" rx="2" tabindex="0" data-date="June 10th" data-t="2465843" data-c="0" data-s="0"/>
+<rect class="c l2" x="500" y="96" width="10" height="10" rx="2" tabindex="0" data-date="June 11th" data-t="13495594" data-c="0" data-s="0"/>
+<rect class="c l1" x="500" y="109" width="10" height="10" rx="2" tabindex="0" data-date="June 12th" data-t="8686902" data-c="0" data-s="0"/>
+<rect class="c l0" x="500" y="122" width="10" height="10" rx="2" tabindex="0" data-date="June 13th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="513" y="44" width="10" height="10" rx="2" tabindex="0" data-date="June 14th" data-t="6476027" data-c="0" data-s="0"/>
+<rect class="c l0" x="513" y="57" width="10" height="10" rx="2" tabindex="0" data-date="June 15th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="513" y="70" width="10" height="10" rx="2" tabindex="0" data-date="June 16th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="513" y="83" width="10" height="10" rx="2" tabindex="0" data-date="June 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="513" y="96" width="10" height="10" rx="2" tabindex="0" data-date="June 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="513" y="109" width="10" height="10" rx="2" tabindex="0" data-date="June 19th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="513" y="122" width="10" height="10" rx="2" tabindex="0" data-date="June 20th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="526" y="44" width="10" height="10" rx="2" tabindex="0" data-date="June 21st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="526" y="57" width="10" height="10" rx="2" tabindex="0" data-date="June 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="526" y="70" width="10" height="10" rx="2" tabindex="0" data-date="June 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="526" y="83" width="10" height="10" rx="2" tabindex="0" data-date="June 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="526" y="96" width="10" height="10" rx="2" tabindex="0" data-date="June 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="526" y="109" width="10" height="10" rx="2" tabindex="0" data-date="June 26th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="526" y="122" width="10" height="10" rx="2" tabindex="0" data-date="June 27th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="539" y="44" width="10" height="10" rx="2" tabindex="0" data-date="June 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="539" y="57" width="10" height="10" rx="2" tabindex="0" data-date="June 29th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="539" y="70" width="10" height="10" rx="2" tabindex="0" data-date="June 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="539" y="83" width="10" height="10" rx="2" tabindex="0" data-date="July 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="539" y="96" width="10" height="10" rx="2" tabindex="0" data-date="July 2nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="539" y="109" width="10" height="10" rx="2" tabindex="0" data-date="July 3rd" data-t="212334" data-c="0" data-s="0"/>
+<rect class="c l0" x="539" y="122" width="10" height="10" rx="2" tabindex="0" data-date="July 4th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="552" y="44" width="10" height="10" rx="2" tabindex="0" data-date="July 5th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="552" y="57" width="10" height="10" rx="2" tabindex="0" data-date="July 6th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="552" y="70" width="10" height="10" rx="2" tabindex="0" data-date="July 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="552" y="83" width="10" height="10" rx="2" tabindex="0" data-date="July 8th" data-t="6393420" data-c="0" data-s="0"/>
+<rect class="c l1" x="552" y="96" width="10" height="10" rx="2" tabindex="0" data-date="July 9th" data-t="8544303" data-c="7" data-s="0"/>
+<rect class="c l2" x="552" y="109" width="10" height="10" rx="2" tabindex="0" data-date="July 10th" data-t="36303519" data-c="4" data-s="0"/>
+<rect class="c l2" x="552" y="122" width="10" height="10" rx="2" tabindex="0" data-date="July 11th" data-t="13731616" data-c="0" data-s="0"/>
+<rect class="c l3" x="565" y="44" width="10" height="10" rx="2" tabindex="0" data-date="July 12th" data-t="55759871" data-c="0" data-s="0"/>
+<rect class="c l2" x="565" y="57" width="10" height="10" rx="2" tabindex="0" data-date="July 13th" data-t="13261423" data-c="0" data-s="0"/>
+<rect class="c l4" x="565" y="70" width="10" height="10" rx="2" tabindex="0" data-date="July 14th" data-t="112312277" data-c="0" data-s="0"/>
+<rect class="c l4" x="565" y="83" width="10" height="10" rx="2" tabindex="0" data-date="July 15th" data-t="96038123" data-c="0" data-s="0"/>
+<rect class="c l4" x="565" y="96" width="10" height="10" rx="2" tabindex="0" data-date="July 16th" data-t="133344970" data-c="0" data-s="0"/>
+<rect class="c l4" x="565" y="109" width="10" height="10" rx="2" tabindex="0" data-date="July 17th" data-t="218392357" data-c="0" data-s="0"/>
+<rect class="c l2" x="565" y="122" width="10" height="10" rx="2" tabindex="0" data-date="July 18th" data-t="30920465" data-c="0" data-s="0"/>
+<rect class="c l2" x="578" y="44" width="10" height="10" rx="2" tabindex="0" data-date="July 19th" data-t="24830416" data-c="0" data-s="0"/>
+<rect class="c l4" x="578" y="57" width="10" height="10" rx="2" tabindex="0" data-date="July 20th" data-t="178889346" data-c="0" data-s="0"/>
+<rect class="c l4" x="578" y="70" width="10" height="10" rx="2" tabindex="0" data-date="July 21st" data-t="194344224" data-c="0" data-s="0"/>
+<rect class="c l0" x="578" y="83" width="10" height="10" rx="2" tabindex="0" data-date="July 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="578" y="96" width="10" height="10" rx="2" tabindex="0" data-date="July 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="578" y="109" width="10" height="10" rx="2" tabindex="0" data-date="July 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="578" y="122" width="10" height="10" rx="2" tabindex="0" data-date="July 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="591" y="44" width="10" height="10" rx="2" tabindex="0" data-date="July 26th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="591" y="57" width="10" height="10" rx="2" tabindex="0" data-date="July 27th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="591" y="70" width="10" height="10" rx="2" tabindex="0" data-date="July 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="591" y="83" width="10" height="10" rx="2" tabindex="0" data-date="July 29th" data-t="917306" data-c="0" data-s="0"/>
+<rect class="c l4" x="591" y="96" width="10" height="10" rx="2" tabindex="0" data-date="July 30th" data-t="74228278" data-c="0" data-s="0"/>
+<rect class="c l2" x="591" y="109" width="10" height="10" rx="2" tabindex="0" data-date="July 31st" data-t="32637056" data-c="0" data-s="0"/>
+<rect class="c l1" x="591" y="122" width="10" height="10" rx="2" tabindex="0" data-date="August 1st" data-t="246173" data-c="1" data-s="0"/>
+<rect class="c l1" x="604" y="44" width="10" height="10" rx="2" tabindex="0" data-date="August 2nd" data-t="1325571" data-c="1" data-s="0"/>
+<rect class="c l0" x="604" y="57" width="10" height="10" rx="2" tabindex="0" data-date="August 3rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="604" y="70" width="10" height="10" rx="2" tabindex="0" data-date="August 4th" data-t="2004660" data-c="0" data-s="0"/>
+<rect class="c l3" x="604" y="83" width="10" height="10" rx="2" tabindex="0" data-date="August 5th" data-t="62839271" data-c="1" data-s="0"/>
+<rect class="c l4" x="604" y="96" width="10" height="10" rx="2" tabindex="0" data-date="August 6th" data-t="129805992" data-c="0" data-s="0"/>
+<rect class="c l0" x="604" y="109" width="10" height="10" rx="2" tabindex="0" data-date="August 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l4" x="604" y="122" width="10" height="10" rx="2" tabindex="0" data-date="August 8th" data-t="122677452" data-c="0" data-s="0"/>
+<rect class="c l3" x="617" y="44" width="10" height="10" rx="2" tabindex="0" data-date="August 9th" data-t="69028925" data-c="0" data-s="0"/>
+<rect class="c l1" x="617" y="57" width="10" height="10" rx="2" tabindex="0" data-date="August 10th" data-t="11333465" data-c="0" data-s="0"/>
+<rect class="c l1" x="617" y="70" width="10" height="10" rx="2" tabindex="0" data-date="August 11th" data-t="197852" data-c="0" data-s="0"/>
+<rect class="c l1" x="617" y="83" width="10" height="10" rx="2" tabindex="0" data-date="August 12th" data-t="1189519" data-c="0" data-s="0"/>
+<rect class="c l4" x="617" y="96" width="10" height="10" rx="2" tabindex="0" data-date="August 13th" data-t="178433348" data-c="0" data-s="0"/>
+<rect class="c l3" x="617" y="109" width="10" height="10" rx="2" tabindex="0" data-date="August 14th" data-t="40745295" data-c="0" data-s="0"/>
+<rect class="c l0" x="617" y="122" width="10" height="10" rx="2" tabindex="0" data-date="August 15th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="630" y="44" width="10" height="10" rx="2" tabindex="0" data-date="August 16th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="630" y="57" width="10" height="10" rx="2" tabindex="0" data-date="August 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="630" y="70" width="10" height="10" rx="2" tabindex="0" data-date="August 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="630" y="83" width="10" height="10" rx="2" tabindex="0" data-date="August 19th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l4" x="630" y="96" width="10" height="10" rx="2" tabindex="0" data-date="August 20th" data-t="95459039" data-c="0" data-s="0"/>
+<rect class="c l2" x="630" y="109" width="10" height="10" rx="2" tabindex="0" data-date="August 21st" data-t="32947636" data-c="0" data-s="0"/>
+<rect class="c l0" x="630" y="122" width="10" height="10" rx="2" tabindex="0" data-date="August 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="643" y="44" width="10" height="10" rx="2" tabindex="0" data-date="August 23rd" data-t="26575" data-c="13" data-s="0"/>
+<rect class="c l4" x="643" y="57" width="10" height="10" rx="2" tabindex="0" data-date="August 24th" data-t="129796722" data-c="4" data-s="0"/>
+<rect class="c l2" x="643" y="70" width="10" height="10" rx="2" tabindex="0" data-date="August 25th" data-t="22613462" data-c="2" data-s="0"/>
+<rect class="c l0" x="643" y="83" width="10" height="10" rx="2" tabindex="0" data-date="August 26th" data-t="0" data-c="10" data-s="0"/>
+<rect class="c l0" x="643" y="96" width="10" height="10" rx="2" tabindex="0" data-date="August 27th" data-t="0" data-c="3" data-s="0"/>
+<rect class="c l0" x="643" y="109" width="10" height="10" rx="2" tabindex="0" data-date="August 28th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="643" y="122" width="10" height="10" rx="2" tabindex="0" data-date="August 29th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="656" y="44" width="10" height="10" rx="2" tabindex="0" data-date="August 30th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="656" y="57" width="10" height="10" rx="2" tabindex="0" data-date="August 31st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="656" y="70" width="10" height="10" rx="2" tabindex="0" data-date="September 1st" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="656" y="83" width="10" height="10" rx="2" tabindex="0" data-date="September 2nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="656" y="96" width="10" height="10" rx="2" tabindex="0" data-date="September 3rd" data-t="0" data-c="1" data-s="0"/>
+<rect class="c l0" x="656" y="109" width="10" height="10" rx="2" tabindex="0" data-date="September 4th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="656" y="122" width="10" height="10" rx="2" tabindex="0" data-date="September 5th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="669" y="44" width="10" height="10" rx="2" tabindex="0" data-date="September 6th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="669" y="57" width="10" height="10" rx="2" tabindex="0" data-date="September 7th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="669" y="70" width="10" height="10" rx="2" tabindex="0" data-date="September 8th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="669" y="83" width="10" height="10" rx="2" tabindex="0" data-date="September 9th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="669" y="96" width="10" height="10" rx="2" tabindex="0" data-date="September 10th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="669" y="109" width="10" height="10" rx="2" tabindex="0" data-date="September 11th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="669" y="122" width="10" height="10" rx="2" tabindex="0" data-date="September 12th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="682" y="44" width="10" height="10" rx="2" tabindex="0" data-date="September 13th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="682" y="57" width="10" height="10" rx="2" tabindex="0" data-date="September 14th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="682" y="70" width="10" height="10" rx="2" tabindex="0" data-date="September 15th" data-t="6729624" data-c="0" data-s="0"/>
+<rect class="c l1" x="682" y="83" width="10" height="10" rx="2" tabindex="0" data-date="September 16th" data-t="3325782" data-c="0" data-s="0"/>
+<rect class="c l0" x="682" y="96" width="10" height="10" rx="2" tabindex="0" data-date="September 17th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="682" y="109" width="10" height="10" rx="2" tabindex="0" data-date="September 18th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="682" y="122" width="10" height="10" rx="2" tabindex="0" data-date="September 19th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="695" y="44" width="10" height="10" rx="2" tabindex="0" data-date="September 20th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l1" x="695" y="57" width="10" height="10" rx="2" tabindex="0" data-date="September 21st" data-t="104731" data-c="0" data-s="0"/>
+<rect class="c l0" x="695" y="70" width="10" height="10" rx="2" tabindex="0" data-date="September 22nd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="695" y="83" width="10" height="10" rx="2" tabindex="0" data-date="September 23rd" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="695" y="96" width="10" height="10" rx="2" tabindex="0" data-date="September 24th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l0" x="695" y="109" width="10" height="10" rx="2" tabindex="0" data-date="September 25th" data-t="0" data-c="0" data-s="0"/>
+<rect class="c l2" x="695" y="122" width="10" height="10" rx="2" tabindex="0" data-date="September 26th" data-t="26499424" data-c="0" data-s="0"/>
+<rect class="c l3" x="708" y="44" width="10" height="10" rx="2" tabindex="0" data-date="September 27th" data-t="46057091" data-c="3" data-s="0"/>
+<text class="lbl" x="616" y="158" text-anchor="end">Less</text>
+<rect class="c l0" x="622" y="149" width="10" height="10" rx="2"/>
+<rect class="c l1" x="635" y="149" width="10" height="10" rx="2"/>
+<rect class="c l2" x="648" y="149" width="10" height="10" rx="2"/>
+<rect class="c l3" x="661" y="149" width="10" height="10" rx="2"/>
+<rect class="c l4" x="674" y="149" width="10" height="10" rx="2"/>
+<text class="lbl" x="690" y="158">More</text>
+</svg>
+
+</div>
+<div id="tip" role="tooltip"></div>
+<script>
+const tip = document.getElementById("tip");
+const short = n => {
+  for (const [d, u] of [[1e9, "B"], [1e6, "M"], [1e3, "K"]])
+    if (n >= d) return (n / d).toFixed(1).replace(/\.0$/, "") + u;
+  return String(n);
+};
+const dur = s => {
+  const m = Math.round(s / 60), h = Math.floor(m / 60);
+  return h ? `${h}h ${m % 60}m` : `${m}m`;
+};
+const line = (v, text, none) => v ? `<div>${text}</div>` : `<div class="dim">${none}</div>`;
+function show(el) {
+  const t = +el.dataset.t, c = +el.dataset.c, s = +el.dataset.s;
+  tip.innerHTML = `<b>${el.dataset.date}</b>`
+    + line(t, `${short(t)} AI tokens`, "No AI tokens")
+    + line(c, `${c} contribution${c === 1 ? "" : "s"}`, "No contributions")
+    + line(s, `${dur(s)} coding`, "No coding time");
+  const r = el.getBoundingClientRect();
+  const half = tip.offsetWidth / 2 + 8;
+  tip.style.left = Math.min(Math.max(r.left + r.width / 2, half), innerWidth - half) + "px";
+  tip.style.top = r.top + "px";
+  tip.style.opacity = 1;
+}
+const hide = () => tip.style.opacity = 0;
+for (const el of document.querySelectorAll("rect[tabindex]")) {
+  el.addEventListener("pointerenter", () => show(el));
+  el.addEventListener("pointerleave", hide);
+  el.addEventListener("focus", () => show(el));
+  el.addEventListener("blur", hide);
+}
+addEventListener("scroll", hide, true);
+</script>
+</body>
+</html>

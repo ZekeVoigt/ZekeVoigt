@@ -1,136 +1,246 @@
 #!/usr/bin/env python3
-"""Draw the README's per-day charts and push them.
+"""Draw the README's activity grid and its hover page, then push them.
 
-assets/tokens.svg        AI tokens per day, from this Mac's agent logs (via ccusage)
-assets/contributions.svg GitHub contributions per day (private ones included), via `gh`
+One square per day for the last year, shaded by AI tokens. Each day also carries
+GitHub contributions and WakaTime coding time:
 
-Commits as the github-actions bot, so the daily commit does not count as one of
-Zeke's contributions. Run twice a day by
-~/Library/LaunchAgents/com.zekevoigt.readme-tokens.plist.
+  assets/activity.svg   the grid, as an image in the README (GitHub allows no hover there)
+  docs/index.html       the same grid on GitHub Pages, with a tooltip per day
+  assets/activity.json  every day's tokens and seconds ever seen -- the local logs get pruned
+
+Sources: ccusage (this Mac's agent logs), `gh api graphql` (contributions), and the
+WakaTime API with the key its editor plugin writes to ~/.wakatime.cfg (skipped until then).
+Commits as the github-actions bot, so the daily commit is not one of Zeke's contributions.
+Run twice a day by ~/Library/LaunchAgents/com.zekevoigt.readme-tokens.plist.
 """
+import base64
+import configparser
 import datetime as dt
+import html
 import json
 import os
 import subprocess
 import sys
+import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-ASSETS = REPO / "assets"
-LOG = ASSETS / "tokens.json"  # every day seen, kept: local logs get pruned
-DAYS = 90
+LOG = REPO / "assets" / "activity.json"
+SVG = REPO / "assets" / "activity.svg"
+PAGE = REPO / "docs" / "index.html"
+PAGE_URL = "https://zekevoigt.github.io/ZekeVoigt/"
 BOT = "github-actions[bot]"
 BOT_EMAIL = "41898282+github-actions[bot]@users.noreply.github.com"
+
+CELL, PITCH, LEFT, TOP = 10, 13, 32, 44
+LIGHT = ["#eff2f5", "#aceebb", "#4ac26b", "#2da44e", "#116329"]
+DARK = ["#151b23", "#033a16", "#196c2e", "#2ea043", "#56d364"]
 
 os.environ["PATH"] = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:" + os.environ.get("PATH", "")
 
 
-def usage():
-    out = subprocess.run(
-        ["npx", "-y", "ccusage@latest", "daily", "--json"],
-        capture_output=True, text=True, check=True, cwd="/tmp",
-    ).stdout
-    data = json.loads(out)
-    seen = json.loads(LOG.read_text()) if LOG.exists() else {}
-    for row in data["daily"]:
-        seen[row["period"]] = max(seen.get(row["period"], 0), row["totalTokens"])
-    LOG.write_text(json.dumps(dict(sorted(seen.items())), indent=1) + "\n")
-    return seen, sum(seen.values())
+def run(*cmd):
+    return subprocess.run(cmd, capture_output=True, text=True, check=True, cwd="/tmp").stdout
+
+
+def tokens():
+    data = json.loads(run("npx", "-y", "ccusage@latest", "daily", "--json"))
+    return {row["period"]: row["totalTokens"] for row in data["daily"]}
 
 
 def contributions():
     q = ("query { viewer { contributionsCollection { contributionCalendar {"
-         " totalContributions weeks { contributionDays { date contributionCount } } } } } }")
-    out = subprocess.run(["gh", "api", "graphql", "-f", f"query={q}"],
-                         capture_output=True, text=True, check=True).stdout
-    cal = json.loads(out)["data"]["viewer"]["contributionsCollection"]["contributionCalendar"]
-    by_day = {d["date"]: d["contributionCount"] for w in cal["weeks"] for d in w["contributionDays"]}
-    return by_day, cal["totalContributions"]
+         " weeks { contributionDays { date contributionCount } } } } } }")
+    cal = json.loads(run("gh", "api", "graphql", "-f", f"query={q}"))
+    weeks = cal["data"]["viewer"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+    return {d["date"]: d["contributionCount"] for w in weeks for d in w["contributionDays"]}
+
+
+def coding_seconds(start, end):
+    cfg = configparser.ConfigParser()
+    cfg.read(Path.home() / ".wakatime.cfg")
+    key = cfg.get("settings", "api_key", fallback="")
+    if not key:
+        return {}
+    req = urllib.request.Request(
+        f"https://wakatime.com/api/v1/users/current/summaries?start={start}&end={end}",
+        headers={"Authorization": "Basic " + base64.b64encode(key.encode()).decode()},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.load(r)["data"]
+    except Exception as e:  # WakaTime down or key revoked: keep what the log has
+        print(f"wakatime: {e}", file=sys.stderr)
+        return {}
+    return {d["range"]["date"]: int(d["grand_total"]["total_seconds"]) for d in data}
+
+
+def merge(log, field, fresh):
+    for day, v in fresh.items():
+        row = log.setdefault(day, {})
+        row[field] = max(row.get(field, 0), v)
 
 
 def short(n):
     for div, unit in ((1e9, "B"), (1e6, "M"), (1e3, "K")):
         if n >= div:
-            v = n / div
-            return f"{v:.1f}".rstrip("0").rstrip(".") + unit
+            return f"{n / div:.1f}".rstrip("0").rstrip(".") + unit
     return str(int(n))
 
 
-def nice_max(v):
-    if v <= 0:
-        return 1
-    mag = 10 ** (len(str(int(v))) - 1)
-    for step in (1, 2, 2.5, 5, 10):
-        if step * mag >= v:
-            return step * mag
+def duration(s):
+    h, m = divmod(round(s / 60), 60)
+    return f"{h}h {m}m" if h else f"{m}m"
 
 
-def bar(x, y, w, base, r=4):
-    h = base - y
-    r = min(r, h, w / 2)
-    if h <= 0:
-        return ""
-    return (f"M{x:.1f},{base} V{y + r:.1f} Q{x:.1f},{y:.1f} {x + r:.1f},{y:.1f} "
-            f"H{x + w - r:.1f} Q{x + w:.1f},{y:.1f} {x + w:.1f},{y + r:.1f} V{base} Z")
+def levels(values):
+    """GitHub-style: 0 for none, then 1-4 by quartile of the days that have any."""
+    nz = sorted(v for v in values if v)
+    if not nz:
+        return lambda v: 0
+    cuts = [nz[min(len(nz) - 1, len(nz) * q // 4)] for q in (1, 2, 3)]
+    return lambda v: 0 if not v else 1 + sum(v > c for c in cuts)
 
 
-def svg(title, sub, unit, by_day, total_label, today):
-    days = [today - dt.timedelta(days=i) for i in range(DAYS - 1, -1, -1)]
-    vals = [by_day.get(d.isoformat(), 0) for d in days]
-    top = nice_max(max(vals))
+def grid(log, contrib, today):
+    """The days as (week column, weekday row, date, tokens, contributions, seconds)."""
+    start = today - dt.timedelta(days=(today.weekday() + 1) % 7 + 52 * 7)  # a Sunday
+    days = []
+    d = start
+    while d <= today:
+        row = log.get(d.isoformat(), {})
+        days.append(((d - start).days // 7, (d.weekday() + 1) % 7, d,
+                     row.get("tokens", 0), contrib.get(d.isoformat(), 0), row.get("seconds", 0)))
+        d += dt.timedelta(days=1)
+    return days
 
-    W, H = 800, 230
-    left, right, plot_top, base = 48, 16, 64, 196
-    plot_w = W - left - right
-    slot = plot_w / DAYS
-    gap = 1.5
-    bw = slot - gap
 
-    parts = []
-    for frac in (0.5, 1.0):
-        y = base - (base - plot_top) * frac
-        parts.append(f'<line class="grid" x1="{left}" x2="{W - right}" y1="{y:.1f}" y2="{y:.1f}"/>')
-        parts.append(f'<text class="axis" x="{left - 8}" y="{y + 4:.1f}" text-anchor="end">{short(top * frac)}</text>')
-    parts.append(f'<line class="base" x1="{left}" x2="{W - right}" y1="{base}" y2="{base}"/>')
+def ordinal(d):
+    n = d.day
+    suf = "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{d:%B} {n}{suf}"
 
-    for i, (d, v) in enumerate(zip(days, vals)):
-        x = left + i * slot + gap / 2
-        y = base - (base - plot_top) * v / top
-        p = bar(x, y, bw, base)
-        if p:
-            parts.append(f'<path class="bar" d="{p}"><title>{d:%b %-d}: {v:,} {unit}</title></path>')
 
-    for i in (0, DAYS // 3, 2 * DAYS // 3, DAYS - 1):
-        x = left + i * slot + slot / 2
-        parts.append(f'<text class="axis" x="{x:.1f}" y="{base + 18}" text-anchor="middle">{days[i]:%b %-d}</text>')
+def draw(days, total, interactive):
+    level = levels([t for *_, t, _, _ in days])
+    weeks = days[-1][0] + 1
+    W = LEFT + weeks * PITCH + 12
+    H = TOP + 7 * PITCH + 34
 
-    month = sum(vals)
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{title}, last {DAYS} days: {short(month)}; {total_label}">
+    out = []
+    last = -9
+    for col, row, d, *_ in days:
+        if row == 0 and (d.day <= 7 and col - last >= 3 or col == 0 and d.day <= 21):
+            out.append(f'<text class="lbl" x="{LEFT + col * PITCH}" y="{TOP - 8}">{d:%b}</text>')
+            last = col
+    for row, name in ((1, "Mon"), (3, "Wed"), (5, "Fri")):
+        out.append(f'<text class="lbl" x="{LEFT - 6}" y="{TOP + row * PITCH + 9}" text-anchor="end">{name}</text>')
+
+    for col, row, d, tok, con, sec in days:
+        attrs = ""
+        if interactive:
+            attrs = (f' tabindex="0" data-date="{html.escape(ordinal(d))}" data-t="{tok}"'
+                     f' data-c="{con}" data-s="{sec}"')
+        out.append(f'<rect class="c l{level(tok)}" x="{LEFT + col * PITCH}" y="{TOP + row * PITCH}"'
+                   f' width="{CELL}" height="{CELL}" rx="2"{attrs}/>')
+
+    ly = TOP + 7 * PITCH + 14
+    lx = W - 12 - 5 * PITCH - 34
+    out.append(f'<text class="lbl" x="{lx - 6}" y="{ly + 9}" text-anchor="end">Less</text>')
+    for i in range(5):
+        out.append(f'<rect class="c l{i}" x="{lx + i * PITCH}" y="{ly}" width="{CELL}" height="{CELL}" rx="2"/>')
+    out.append(f'<text class="lbl" x="{lx + 5 * PITCH - 3 + 6}" y="{ly + 9}">More</text>')
+    if not interactive:
+        out.append(f'<text class="lbl" x="{LEFT}" y="{ly + 9}">Click for daily details</text>')
+
+    swatch = "\n".join(f"  .l{i} {{ fill: {c}; }}" for i, c in enumerate(LIGHT))
+    swatch_dark = "\n".join(f"    .l{i} {{ fill: {c}; }}" for i, c in enumerate(DARK))
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{short(total)} AI tokens in the last year, one square per day">
 <style>
-  text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }}
-  .bg {{ fill: #ffffff; stroke: #d1d9e0; }}
-  .title {{ fill: #1f2328; font-size: 15px; font-weight: 600; }}
-  .sub, .axis {{ fill: #59636e; font-size: 12px; }}
-  .num {{ fill: #1f2328; font-size: 20px; font-weight: 600; }}
-  .grid {{ stroke: #eaeef2; stroke-width: 1; }}
-  .base {{ stroke: #d1d9e0; stroke-width: 1; }}
-  .bar {{ fill: #2da44e; }}
+  text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }}
+  .title {{ fill: #1f2328; font-size: 16px; }}
+  .lbl {{ fill: #59636e; font-size: 12px; }}
+  .c {{ stroke: rgba(31, 35, 40, 0.05); stroke-width: 1; }}
+{swatch}
   @media (prefers-color-scheme: dark) {{
-    .bg {{ fill: #0d1117; stroke: #3d444d; }}
-    .title, .num {{ fill: #f0f6fc; }}
-    .sub, .axis {{ fill: #9198a1; }}
-    .grid {{ stroke: #21262d; }}
-    .base {{ stroke: #3d444d; }}
-    .bar {{ fill: #3fb950; }}
+    .title {{ fill: #f0f6fc; }}
+    .lbl {{ fill: #9198a1; }}
+    .c {{ stroke: rgba(240, 246, 252, 0.05); }}
+{swatch_dark}
   }}
 </style>
-<rect class="bg" x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="6"/>
-<text class="title" x="20" y="30">{title}</text>
-<text class="sub" x="20" y="48">{sub} · updated {today:%b %-d}</text>
-<text class="num" x="{W - 20}" y="32" text-anchor="end">{short(month)}</text>
-<text class="sub" x="{W - 20}" y="48" text-anchor="end">last {DAYS} days · {total_label}</text>
-{chr(10).join(parts)}
+<text class="title" x="{LEFT}" y="18">{short(total)} AI tokens in the last year</text>
+{chr(10).join(out)}
 </svg>
+"""
+
+
+def page(svg):
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeke's activity</title>
+<style>
+  :root {{ color-scheme: light dark; --bg: #ffffff; --tip: #25292e; --tip-fg: #ffffff; --muted: #9198a1; }}
+  @media (prefers-color-scheme: dark) {{ :root {{ --bg: #0d1117; --tip: #3d444d; }} }}
+  html, body {{ margin: 0; background: var(--bg); }}
+  body {{ min-height: 100vh; display: grid; place-items: center; padding: 16px; box-sizing: border-box; }}
+  .wrap {{ max-width: 100%; overflow-x: auto; }}
+  svg {{ display: block; }}
+  rect[tabindex] {{ cursor: pointer; outline: none; }}
+  rect[tabindex]:hover, rect[tabindex]:focus-visible {{ stroke: var(--muted); stroke-width: 1.5; }}
+  #tip {{ position: fixed; pointer-events: none; opacity: 0; transform: translate(-50%, calc(-100% - 10px));
+         background: var(--tip); color: var(--tip-fg); border-radius: 6px; padding: 7px 10px;
+         font: 12px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+         white-space: nowrap; transition: opacity .08s; }}
+  #tip::after {{ content: ""; position: absolute; left: 50%; top: 100%; margin-left: -5px;
+                border: 5px solid transparent; border-top-color: var(--tip); }}
+  #tip b {{ font-weight: 600; }}
+  #tip .dim {{ color: #b7bdc8; }}
+</style>
+</head>
+<body>
+<div class="wrap">
+{svg}
+</div>
+<div id="tip" role="tooltip"></div>
+<script>
+const tip = document.getElementById("tip");
+const short = n => {{
+  for (const [d, u] of [[1e9, "B"], [1e6, "M"], [1e3, "K"]])
+    if (n >= d) return (n / d).toFixed(1).replace(/\\.0$/, "") + u;
+  return String(n);
+}};
+const dur = s => {{
+  const m = Math.round(s / 60), h = Math.floor(m / 60);
+  return h ? `${{h}}h ${{m % 60}}m` : `${{m}}m`;
+}};
+const line = (v, text, none) => v ? `<div>${{text}}</div>` : `<div class="dim">${{none}}</div>`;
+function show(el) {{
+  const t = +el.dataset.t, c = +el.dataset.c, s = +el.dataset.s;
+  tip.innerHTML = `<b>${{el.dataset.date}}</b>`
+    + line(t, `${{short(t)}} AI tokens`, "No AI tokens")
+    + line(c, `${{c}} contribution${{c === 1 ? "" : "s"}}`, "No contributions")
+    + line(s, `${{dur(s)}} coding`, "No coding time");
+  const r = el.getBoundingClientRect();
+  const half = tip.offsetWidth / 2 + 8;
+  tip.style.left = Math.min(Math.max(r.left + r.width / 2, half), innerWidth - half) + "px";
+  tip.style.top = r.top + "px";
+  tip.style.opacity = 1;
+}}
+const hide = () => tip.style.opacity = 0;
+for (const el of document.querySelectorAll("rect[tabindex]")) {{
+  el.addEventListener("pointerenter", () => show(el));
+  el.addEventListener("pointerleave", hide);
+  el.addEventListener("focus", () => show(el));
+  el.addEventListener("blur", hide);
+}}
+addEventListener("scroll", hide, true);
+</script>
+</body>
+</html>
 """
 
 
@@ -140,24 +250,25 @@ def git(*args):
 
 def main():
     today = dt.date.today()
-    ASSETS.mkdir(exist_ok=True)
-    by_day, all_time = usage()
-    (ASSETS / "tokens.svg").write_text(svg(
-        "AI tokens per day", "Claude Code, Codex and other agents", "tokens",
-        by_day, f"{short(all_time)} all time", today))
-    by_day, year = contributions()
-    (ASSETS / "contributions.svg").write_text(svg(
-        "Contributions per day", "Commits, PRs, issues and reviews", "contributions",
-        by_day, f"{year:,} in the last year", today))
+    log = json.loads(LOG.read_text()) if LOG.exists() else {}
+    merge(log, "tokens", tokens())
+    merge(log, "seconds", coding_seconds(today - dt.timedelta(days=13), today))
+    LOG.write_text(json.dumps(dict(sorted(log.items())), indent=1) + "\n")
+
+    days = grid(log, contributions(), today)
+    total = sum(t for *_, t, _, _ in days)
+    SVG.write_text(draw(days, total, interactive=False))
+    PAGE.parent.mkdir(exist_ok=True)
+    PAGE.write_text(page(draw(days, total, interactive=True)))
     if "--no-push" in sys.argv:
         return
     git("pull", "--rebase", "--autostash", "-q")
-    git("add", str(ASSETS))
-    if not git("status", "--porcelain", str(ASSETS)).strip():
+    git("add", "assets", "docs")
+    if not git("status", "--porcelain", "assets", "docs").strip():
         return
     subprocess.run(
         ["git", "-C", str(REPO), "-c", f"user.name={BOT}", "-c", f"user.email={BOT_EMAIL}",
-         "commit", "-q", "-m", "Update activity charts"],
+         "commit", "-q", "-m", "Update activity grid"],
         check=True,
     )
     git("push", "-q")
