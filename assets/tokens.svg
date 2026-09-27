@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="230" viewBox="0 0 800 230" role="img" aria-label="AI tokens per day, last 90 days: 2.2B total; 7.7B all time">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="230" viewBox="0 0 800 230" role="img" aria-label="AI tokens per day, last 90 days: 2.2B; 7.7B all time">
 <style>
   text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
   .bg { fill: #ffffff; stroke: #d1d9e0; }
@@ -19,7 +19,7 @@
 </style>
 <rect class="bg" x="0.5" y="0.5" width="799" height="229" rx="6"/>
 <text class="title" x="20" y="30">AI tokens per day</text>
-<text class="sub" x="20" y="48">AI coding agents · last 90 days · updated Sep 27</text>
+<text class="sub" x="20" y="48">Claude Code, Codex and other agents · updated Sep 27</text>
 <text class="num" x="780" y="32" text-anchor="end">2.2B</text>
 <text class="sub" x="780" y="48" text-anchor="end">last 90 days · 7.7B all time</text>
 <line class="grid" x1="48" x2="784" y1="130.0" y2="130.0"/>
@@ -66,7 +66,7 @@
 <path class="bar" d="M686.6,196 V196.0 Q686.6,194.2 688.4,194.2 H691.5 Q693.3,194.2 693.3,196.0 V196 Z"><title>Sep 16: 3,325,782 tokens</title></path>
 <path class="bar" d="M727.5,196 V196.0 Q727.5,195.9 727.6,195.9 H734.1 Q734.2,195.9 734.2,196.0 V196 Z"><title>Sep 21: 104,731 tokens</title></path>
 <path class="bar" d="M768.4,196 V185.3 Q768.4,182.0 771.7,182.0 H771.7 Q775.1,182.0 775.1,185.3 V196 Z"><title>Sep 26: 26,499,424 tokens</title></path>
-<path class="bar" d="M776.6,196 V175.9 Q776.6,172.6 779.9,172.6 H779.9 Q783.2,172.6 783.2,175.9 V196 Z"><title>Sep 27: 44,323,356 tokens</title></path>
+<path class="bar" d="M776.6,196 V175.7 Q776.6,172.3 779.9,172.3 H779.9 Q783.2,172.3 783.2,175.7 V196 Z"><title>Sep 27: 44,830,109 tokens</title></path>
 <text class="axis" x="52.1" y="214" text-anchor="middle">Jun 30</text>
 <text class="axis" x="297.4" y="214" text-anchor="middle">Jul 30</text>
 <text class="axis" x="542.8" y="214" text-anchor="middle">Aug 29</text>

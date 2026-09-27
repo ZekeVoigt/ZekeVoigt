@@ -8,11 +8,7 @@ I like building cool things.
 
 ## Activity
 
-**Contributions per day**
-
-[![Contributions per day](https://github-readme-activity-graph.vercel.app/graph?username=ZekeVoigt&theme=github-compact&hide_border=true&area=true)](https://github.com/Ashutosh00710/github-readme-activity-graph)
-
-**AI tokens per day**
+![Contributions per day](assets/contributions.svg)
 
 ![AI tokens per day](assets/tokens.svg)
 

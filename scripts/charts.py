@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Draw tokens-per-day from this Mac's Claude Code / Codex logs (via ccusage) and push it.
+"""Draw the README's per-day charts and push them.
 
-Writes assets/tokens.svg in this repo, commits it as the github-actions bot (so the
-daily commit does not count as one of Zeke's contributions), and pushes.
-Run by ~/Library/LaunchAgents/com.zekevoigt.readme-tokens.plist once a day.
+assets/tokens.svg        AI tokens per day, from this Mac's agent logs (via ccusage)
+assets/contributions.svg GitHub contributions per day (private ones included), via `gh`
+
+Commits as the github-actions bot, so the daily commit does not count as one of
+Zeke's contributions. Run twice a day by
+~/Library/LaunchAgents/com.zekevoigt.readme-tokens.plist.
 """
 import datetime as dt
 import json
@@ -13,8 +16,8 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-OUT = REPO / "assets" / "tokens.svg"
-LOG = REPO / "assets" / "tokens.json"  # every day seen, kept: local logs get pruned
+ASSETS = REPO / "assets"
+LOG = ASSETS / "tokens.json"  # every day seen, kept: local logs get pruned
 DAYS = 90
 BOT = "github-actions[bot]"
 BOT_EMAIL = "41898282+github-actions[bot]@users.noreply.github.com"
@@ -33,6 +36,16 @@ def usage():
         seen[row["period"]] = max(seen.get(row["period"], 0), row["totalTokens"])
     LOG.write_text(json.dumps(dict(sorted(seen.items())), indent=1) + "\n")
     return seen, sum(seen.values())
+
+
+def contributions():
+    q = ("query { viewer { contributionsCollection { contributionCalendar {"
+         " totalContributions weeks { contributionDays { date contributionCount } } } } } }")
+    out = subprocess.run(["gh", "api", "graphql", "-f", f"query={q}"],
+                         capture_output=True, text=True, check=True).stdout
+    cal = json.loads(out)["data"]["viewer"]["contributionsCollection"]["contributionCalendar"]
+    by_day = {d["date"]: d["contributionCount"] for w in cal["weeks"] for d in w["contributionDays"]}
+    return by_day, cal["totalContributions"]
 
 
 def short(n):
@@ -61,7 +74,7 @@ def bar(x, y, w, base, r=4):
             f"H{x + w - r:.1f} Q{x + w:.1f},{y:.1f} {x + w:.1f},{y + r:.1f} V{base} Z")
 
 
-def svg(by_day, all_time, today):
+def svg(title, sub, unit, by_day, total_label, today):
     days = [today - dt.timedelta(days=i) for i in range(DAYS - 1, -1, -1)]
     vals = [by_day.get(d.isoformat(), 0) for d in days]
     top = nice_max(max(vals))
@@ -85,14 +98,14 @@ def svg(by_day, all_time, today):
         y = base - (base - plot_top) * v / top
         p = bar(x, y, bw, base)
         if p:
-            parts.append(f'<path class="bar" d="{p}"><title>{d:%b %-d}: {v:,} tokens</title></path>')
+            parts.append(f'<path class="bar" d="{p}"><title>{d:%b %-d}: {v:,} {unit}</title></path>')
 
     for i in (0, DAYS // 3, 2 * DAYS // 3, DAYS - 1):
         x = left + i * slot + slot / 2
         parts.append(f'<text class="axis" x="{x:.1f}" y="{base + 18}" text-anchor="middle">{days[i]:%b %-d}</text>')
 
     month = sum(vals)
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="AI tokens per day, last {DAYS} days: {short(month)} total; {short(all_time)} all time">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{title}, last {DAYS} days: {short(month)}; {total_label}">
 <style>
   text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }}
   .bg {{ fill: #ffffff; stroke: #d1d9e0; }}
@@ -112,10 +125,10 @@ def svg(by_day, all_time, today):
   }}
 </style>
 <rect class="bg" x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="6"/>
-<text class="title" x="20" y="30">AI tokens per day</text>
-<text class="sub" x="20" y="48">AI coding agents · last {DAYS} days · updated {today:%b %-d}</text>
+<text class="title" x="20" y="30">{title}</text>
+<text class="sub" x="20" y="48">{sub} · updated {today:%b %-d}</text>
 <text class="num" x="{W - 20}" y="32" text-anchor="end">{short(month)}</text>
-<text class="sub" x="{W - 20}" y="48" text-anchor="end">last {DAYS} days · {short(all_time)} all time</text>
+<text class="sub" x="{W - 20}" y="48" text-anchor="end">last {DAYS} days · {total_label}</text>
 {chr(10).join(parts)}
 </svg>
 """
@@ -126,19 +139,25 @@ def git(*args):
 
 
 def main():
+    today = dt.date.today()
+    ASSETS.mkdir(exist_ok=True)
     by_day, all_time = usage()
-    OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(svg(by_day, all_time, dt.date.today()))
+    (ASSETS / "tokens.svg").write_text(svg(
+        "AI tokens per day", "Claude Code, Codex and other agents", "tokens",
+        by_day, f"{short(all_time)} all time", today))
+    by_day, year = contributions()
+    (ASSETS / "contributions.svg").write_text(svg(
+        "Contributions per day", "Commits, PRs, issues and reviews", "contributions",
+        by_day, f"{year:,} in the last year", today))
     if "--no-push" in sys.argv:
-        print(OUT)
         return
     git("pull", "--rebase", "--autostash", "-q")
-    git("add", str(OUT), str(LOG))
-    if not git("status", "--porcelain", str(OUT), str(LOG)).strip():
+    git("add", str(ASSETS))
+    if not git("status", "--porcelain", str(ASSETS)).strip():
         return
     subprocess.run(
         ["git", "-C", str(REPO), "-c", f"user.name={BOT}", "-c", f"user.email={BOT_EMAIL}",
-         "commit", "-q", "-m", "Update token chart"],
+         "commit", "-q", "-m", "Update activity charts"],
         check=True,
     )
     git("push", "-q")
