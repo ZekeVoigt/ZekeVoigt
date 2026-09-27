@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Draw the README's activity grid and its hover page, then push them.
 
-One square per day for the last year, shaded by active time. Each day also carries
-contributions and active time:
+One square per day for the last year: pink if Claude Code wrote most of that day's AI
+tokens, blue if Codex did, gray for the rest (Cursor, editors, commits); shaded by active time. Each day also carries
+both agents' tokens and contributions:
 
   assets/activity.svg   the grid, as an image in the README (GitHub allows no hover there)
   docs/index.html       the same grid on GitHub Pages, with a tooltip per day
@@ -46,8 +47,15 @@ BOT = "github-actions[bot]"
 BOT_EMAIL = "41898282+github-actions[bot]@users.noreply.github.com"
 
 CELL, PITCH, LEFT, TOP = 10, 13, 32, 44
-LIGHT = ["#eff2f5", "#b6e3ff", "#54aeff", "#0969da", "#0a3069"]
-DARK = ["#151b23", "#0c2d6b", "#1158c7", "#388bfd", "#79c0ff"]
+EMPTY = ("#eff2f5", "#151b23")  # light, dark
+HUES = {  # class prefix: (legend label, light ramp, dark ramp), levels 1-4
+    "p": ("Claude Code", ["#ffadda", "#ff80c8", "#bf3989", "#772057"],
+          ["#4d0336", "#772057", "#bf3989", "#ff80c8"]),
+    "b": ("Codex", ["#b6e3ff", "#54aeff", "#0969da", "#0a3069"],
+          ["#0c2d6b", "#1158c7", "#388bfd", "#79c0ff"]),
+    "n": ("Other", ["#d1d9e0", "#afb8c1", "#818b98", "#59636e"],
+          ["#2f3742", "#3d444d", "#656c76", "#9198a1"]),
+}
 
 os.environ["PATH"] = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:" + os.environ.get("PATH", "")
 
@@ -61,7 +69,13 @@ def tokens():
     os.environ["CLAUDE_CONFIG_DIR"] = ",".join(str(d) for d in Path.home().glob(".claude*")
                                                if (d / "projects").is_dir())
     data = json.loads(run("npx", "-y", "ccusage@latest", "daily", "--json"))
-    return {row["period"]: row["totalTokens"] for row in data["daily"]}
+    claude, codex = {}, {}
+    for row in data["daily"]:
+        for m in row["modelBreakdowns"]:
+            n = m["inputTokens"] + m["outputTokens"] + m["cacheReadTokens"] + m["cacheCreationTokens"]
+            side = claude if m["modelName"].startswith("claude") else codex  # gpt-*, and Hermes's few
+            side[row["period"]] = side.get(row["period"], 0) + n
+    return claude, codex
 
 
 def contributions():
@@ -211,14 +225,16 @@ def levels(values):
 
 
 def grid(log, contrib, today):
-    """The days as (week column, weekday row, date, tokens, contributions, seconds)."""
+    """The days as (week column, weekday row, date, claude, codex, contributions, seconds)."""
     start = today - dt.timedelta(days=(today.weekday() + 1) % 7 + 52 * 7)  # a Sunday
     days = []
     d = start
     while d <= today:
         row = log.get(d.isoformat(), {})
+        cl = row.get("claude", 0)
+        cx = row.get("codex", 0)
         days.append(((d - start).days // 7, (d.weekday() + 1) % 7, d,
-                     row.get("tokens", 0), contrib.get(d.isoformat(), 0), row.get("seconds", 0)))
+                     cl, cx, contrib.get(d.isoformat(), 0), row.get("seconds", 0)))
         d += dt.timedelta(days=1)
     return days
 
@@ -244,25 +260,35 @@ def draw(days, total, interactive):
     for row, name in ((1, "Mon"), (3, "Wed"), (5, "Fri")):
         out.append(f'<text class="lbl" x="{LEFT - 6}" y="{TOP + row * PITCH + 9}" text-anchor="end">{name}</text>')
 
-    for col, row, d, tok, con, sec in days:
+    for col, row, d, cl, cx, con, sec in days:
+        if not (cl or cx or con or sec):
+            cls = "e"
+        else:
+            cls = ("p" if cl > cx else "b" if cx else "n") + str(max(1, level(sec)))
         attrs = ""
         if interactive:
-            attrs = (f' tabindex="0" data-date="{html.escape(ordinal(d))}" data-t="{tok}"'
-                     f' data-c="{con}" data-s="{sec}"')
-        out.append(f'<rect class="c l{level(sec)}" x="{LEFT + col * PITCH}" y="{TOP + row * PITCH}"'
+            attrs = (f' tabindex="0" data-date="{html.escape(ordinal(d))}" data-cl="{cl}"'
+                     f' data-cx="{cx}" data-c="{con}" data-s="{sec}"')
+        out.append(f'<rect class="c {cls}" x="{LEFT + col * PITCH}" y="{TOP + row * PITCH}"'
                    f' width="{CELL}" height="{CELL}" rx="2"{attrs}/>')
 
+    # legend: each hue's name, then its four steps, light to dark
     ly = TOP + 7 * PITCH + 14
-    lx = W - 12 - 5 * PITCH - 34
-    out.append(f'<text class="lbl" x="{lx - 6}" y="{ly + 9}" text-anchor="end">Less</text>')
-    for i in range(5):
-        out.append(f'<rect class="c l{i}" x="{lx + i * PITCH}" y="{ly}" width="{CELL}" height="{CELL}" rx="2"/>')
-    out.append(f'<text class="lbl" x="{lx + 5 * PITCH - 3 + 6}" y="{ly + 9}">More</text>')
+    lx = LEFT
+    for key, (name, *_) in HUES.items():
+        out.append(f'<text class="lbl" x="{lx}" y="{ly + 9}">{name}</text>')
+        lx += 7 * len(name) + 8
+        for i in range(1, 5):
+            out.append(f'<rect class="c {key}{i}" x="{lx}" y="{ly}" width="{CELL}" height="{CELL}" rx="2"/>')
+            lx += PITCH
+        lx += 14
     if not interactive:
-        out.append(f'<text class="lbl" x="{LEFT}" y="{ly + 9}">Click for daily details</text>')
+        out.append(f'<text class="lbl" x="{W - 12}" y="{ly + 9}" text-anchor="end">Click for daily details</text>')
 
-    swatch = "\n".join(f"  .l{i} {{ fill: {c}; }}" for i, c in enumerate(LIGHT))
-    swatch_dark = "\n".join(f"    .l{i} {{ fill: {c}; }}" for i, c in enumerate(DARK))
+    swatch = "\n".join([f"  .e {{ fill: {EMPTY[0]}; }}"] + [
+        f"  .{k}{i + 1} {{ fill: {c}; }}" for k, (_, light, _) in HUES.items() for i, c in enumerate(light)])
+    swatch_dark = "\n".join([f"    .e {{ fill: {EMPTY[1]}; }}"] + [
+        f"    .{k}{i + 1} {{ fill: {c}; }}" for k, (*_, dark) in HUES.items() for i, c in enumerate(dark)])
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{total} in the last year, one square per day">
 <style>
   text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }}
@@ -307,6 +333,9 @@ def page(svg):
                 border: 5px solid transparent; border-top-color: var(--tip); }}
   #tip b {{ font-weight: 600; }}
   #tip .dim {{ color: #b7bdc8; }}
+  #tip .dot {{ display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }}
+  #tip .dot.p {{ background: #ff80c8; }}
+  #tip .dot.b {{ background: #54aeff; }}
 </style>
 </head>
 <body>
@@ -327,9 +356,10 @@ const dur = s => {{
 }};
 const line = (v, text, none) => v ? `<div>${{text}}</div>` : `<div class="dim">${{none}}</div>`;
 function show(el) {{
-  const t = +el.dataset.t, c = +el.dataset.c, s = +el.dataset.s;
+  const cl = +el.dataset.cl, cx = +el.dataset.cx, c = +el.dataset.c, s = +el.dataset.s;
   tip.innerHTML = `<b>${{el.dataset.date}}</b>`
-    + line(t, `${{short(t)}} AI tokens`, "No AI tokens")
+    + line(cl, `<span class="dot p"></span>Claude Code ${{short(cl)}} tokens`, "No Claude Code")
+    + line(cx, `<span class="dot b"></span>Codex ${{short(cx)}} tokens`, "No Codex")
     + line(c, `${{c}} contribution${{c === 1 ? "" : "s"}}`, "No contributions")
     + line(s, `${{dur(s)}} active`, "No active time");
   const r = el.getBoundingClientRect();
@@ -359,7 +389,12 @@ def git(*args):
 def main():
     today = dt.date.today()
     log = json.loads(LOG.read_text()) if LOG.exists() else {}
-    merge(log, "tokens", tokens())
+    claude, codex = tokens()
+    merge(log, "claude", claude)
+    merge(log, "codex", codex)
+    for row in log.values():  # rows from before the split: the rest was Codex's
+        if "tokens" in row:
+            row.setdefault("codex", max(0, row.pop("tokens") - row.get("claude", 0)))
     merge(log, "seconds", coding_seconds(today - dt.timedelta(days=13), today))
     done = commits()
     merge(log, "seconds", active_seconds(agent_minutes() | editor_minutes() | cursor_chat_minutes()
@@ -376,7 +411,7 @@ def main():
         contrib[day] = max(contrib.get(day, 0), row.get("commits", 0))
     days = grid(log, contrib, today)
     hours = sum(s for *_, s in days) // 3600
-    total = f"{hours:,} hours active · {short(sum(t for *_, t, _, _ in days))} AI tokens"
+    total = f"{hours:,} hours active · {short(sum(cl + cx for _, _, _, cl, cx, _, _ in days))} AI tokens"
     SVG.write_text(draw(days, total, interactive=False))
     PAGE.parent.mkdir(exist_ok=True)
     PAGE.write_text(page(draw(days, total, interactive=True)))
