@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Draw the README's activity grid and its hover page, then push them.
 
-One square per day for the last year: pink if Claude Code wrote most of that day's AI
-tokens, blue if Codex did, gray for the rest (Cursor, editors, commits); shaded by active time. Each day also carries
-both agents' tokens and contributions:
+One square per day for the last year, pink, shaded by active time. Each day also carries
+its AI tokens (all agents) and contributions:
 
   assets/activity.svg   the grid, as an image in the README (GitHub allows no hover there)
   docs/index.html       the same grid on GitHub Pages, with a tooltip per day
@@ -47,15 +46,8 @@ BOT = "github-actions[bot]"
 BOT_EMAIL = "41898282+github-actions[bot]@users.noreply.github.com"
 
 CELL, PITCH, LEFT, TOP = 10, 13, 32, 44
-EMPTY = ("#eff2f5", "#151b23")  # light, dark
-HUES = {  # class prefix: (legend label, light ramp, dark ramp), levels 1-4
-    "p": ("Claude Code", ["#ffadda", "#ff80c8", "#bf3989", "#772057"],
-          ["#4d0336", "#772057", "#bf3989", "#ff80c8"]),
-    "b": ("Codex", ["#b6e3ff", "#54aeff", "#0969da", "#0a3069"],
-          ["#0c2d6b", "#1158c7", "#388bfd", "#79c0ff"]),
-    "n": ("Other", ["#d1d9e0", "#afb8c1", "#818b98", "#59636e"],
-          ["#2f3742", "#3d444d", "#656c76", "#9198a1"]),
-}
+LIGHT = ["#eff2f5", "#ffadda", "#ff80c8", "#bf3989", "#772057"]  # empty, then levels 1-4
+DARK = ["#151b23", "#4d0336", "#772057", "#bf3989", "#ff80c8"]
 
 os.environ["PATH"] = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:" + os.environ.get("PATH", "")
 
@@ -261,34 +253,25 @@ def draw(days, total, interactive):
         out.append(f'<text class="lbl" x="{LEFT - 6}" y="{TOP + row * PITCH + 9}" text-anchor="end">{name}</text>')
 
     for col, row, d, cl, cx, con, sec in days:
-        if not (cl or cx or con or sec):
-            cls = "e"
-        else:
-            cls = ("p" if cl > cx else "b" if cx else "n") + str(max(1, level(sec)))
+        lv = max(1, level(sec)) if cl or cx or con or sec else 0
         attrs = ""
         if interactive:
-            attrs = (f' tabindex="0" data-date="{html.escape(ordinal(d))}" data-cl="{cl}"'
-                     f' data-cx="{cx}" data-c="{con}" data-s="{sec}"')
-        out.append(f'<rect class="c {cls}" x="{LEFT + col * PITCH}" y="{TOP + row * PITCH}"'
+            attrs = (f' tabindex="0" data-date="{html.escape(ordinal(d))}" data-t="{cl + cx}"'
+                     f' data-c="{con}" data-s="{sec}"')
+        out.append(f'<rect class="c l{lv}" x="{LEFT + col * PITCH}" y="{TOP + row * PITCH}"'
                    f' width="{CELL}" height="{CELL}" rx="2"{attrs}/>')
 
-    # legend: each hue's name, then its four steps, light to dark
     ly = TOP + 7 * PITCH + 14
-    lx = LEFT
-    for key, (name, *_) in HUES.items():
-        out.append(f'<text class="lbl" x="{lx}" y="{ly + 9}">{name}</text>')
-        lx += 7 * len(name) + 8
-        for i in range(1, 5):
-            out.append(f'<rect class="c {key}{i}" x="{lx}" y="{ly}" width="{CELL}" height="{CELL}" rx="2"/>')
-            lx += PITCH
-        lx += 14
+    lx = W - 12 - 5 * PITCH - 34
+    out.append(f'<text class="lbl" x="{lx - 6}" y="{ly + 9}" text-anchor="end">Less</text>')
+    for i in range(5):
+        out.append(f'<rect class="c l{i}" x="{lx + i * PITCH}" y="{ly}" width="{CELL}" height="{CELL}" rx="2"/>')
+    out.append(f'<text class="lbl" x="{lx + 5 * PITCH + 3}" y="{ly + 9}">More</text>')
     if not interactive:
-        out.append(f'<text class="lbl" x="{W - 12}" y="{ly + 9}" text-anchor="end">Click for daily details</text>')
+        out.append(f'<text class="lbl" x="{LEFT}" y="{ly + 9}">Click for daily details</text>')
 
-    swatch = "\n".join([f"  .e {{ fill: {EMPTY[0]}; }}"] + [
-        f"  .{k}{i + 1} {{ fill: {c}; }}" for k, (_, light, _) in HUES.items() for i, c in enumerate(light)])
-    swatch_dark = "\n".join([f"    .e {{ fill: {EMPTY[1]}; }}"] + [
-        f"    .{k}{i + 1} {{ fill: {c}; }}" for k, (*_, dark) in HUES.items() for i, c in enumerate(dark)])
+    swatch = "\n".join(f"  .l{i} {{ fill: {c}; }}" for i, c in enumerate(LIGHT))
+    swatch_dark = "\n".join(f"    .l{i} {{ fill: {c}; }}" for i, c in enumerate(DARK))
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{total} in the last year, one square per day">
 <style>
   text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }}
@@ -333,9 +316,6 @@ def page(svg):
                 border: 5px solid transparent; border-top-color: var(--tip); }}
   #tip b {{ font-weight: 600; }}
   #tip .dim {{ color: #b7bdc8; }}
-  #tip .dot {{ display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }}
-  #tip .dot.p {{ background: #ff80c8; }}
-  #tip .dot.b {{ background: #54aeff; }}
 </style>
 </head>
 <body>
@@ -356,10 +336,9 @@ const dur = s => {{
 }};
 const line = (v, text, none) => v ? `<div>${{text}}</div>` : `<div class="dim">${{none}}</div>`;
 function show(el) {{
-  const cl = +el.dataset.cl, cx = +el.dataset.cx, c = +el.dataset.c, s = +el.dataset.s;
+  const t = +el.dataset.t, c = +el.dataset.c, s = +el.dataset.s;
   tip.innerHTML = `<b>${{el.dataset.date}}</b>`
-    + line(cl, `<span class="dot p"></span>Claude Code ${{short(cl)}} tokens`, "No Claude Code")
-    + line(cx, `<span class="dot b"></span>Codex ${{short(cx)}} tokens`, "No Codex")
+    + line(t, `${{short(t)}} AI tokens`, "No AI tokens")
     + line(c, `${{c}} contribution${{c === 1 ? "" : "s"}}`, "No contributions")
     + line(s, `${{dur(s)}} active`, "No active time");
   const r = el.getBoundingClientRect();
