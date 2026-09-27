@@ -338,7 +338,7 @@ const line = (v, text, none) => v ? `<div>${{text}}</div>` : `<div class="dim">$
 function show(el) {{
   const t = +el.dataset.t, c = +el.dataset.c, s = +el.dataset.s;
   tip.innerHTML = `<b>${{el.dataset.date}}</b>`
-    + line(t, `${{short(t)}} AI tokens`, "No AI tokens")
+    + line(t, `${{short(t)}} tokens`, "No tokens")
     + line(c, `${{c}} contribution${{c === 1 ? "" : "s"}}`, "No contributions")
     + line(s, `${{dur(s)}} active`, "No active time");
   const r = el.getBoundingClientRect();
@@ -390,7 +390,7 @@ def main():
         contrib[day] = max(contrib.get(day, 0), row.get("commits", 0))
     days = grid(log, contrib, today)
     hours = sum(s for *_, s in days) // 3600
-    total = f"{hours:,} hours active · {short(sum(cl + cx for _, _, _, cl, cx, _, _ in days))} AI tokens"
+    total = f"{hours:,} hours active · {short(sum(cl + cx for _, _, _, cl, cx, _, _ in days))} tokens"
     SVG.write_text(draw(days, total, interactive=False))
     PAGE.parent.mkdir(exist_ok=True)
     PAGE.write_text(page(draw(days, total, interactive=True)))
