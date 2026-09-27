@@ -34,7 +34,7 @@ SVG = REPO / "assets" / "activity.svg"
 PAGE = REPO / "docs" / "index.html"
 CACHE = Path.home() / ".cache" / "readme-activity.json"  # per log file: its active minutes
 AGENT_LOGS = [Path.home() / ".codex" / "sessions", Path.home() / ".codex" / "archived_sessions",
-              Path.home() / ".claude" / "projects"]
+              *(d / "projects" for d in Path.home().glob(".claude*") if d.is_dir())]
 EDITOR_HISTORY = [Path.home() / "Library" / "Application Support" / app / "User" / "History"
                   for app in ("Code", "Cursor", "Windsurf")]  # a timestamp per file save
 CURSOR_DB = (Path.home() / "Library" / "Application Support" / "Cursor" / "User"
@@ -57,6 +57,9 @@ def run(*cmd):
 
 
 def tokens():
+    # every Claude Code account on this Mac, not only ~/.claude
+    os.environ["CLAUDE_CONFIG_DIR"] = ",".join(str(d) for d in Path.home().glob(".claude*")
+                                               if (d / "projects").is_dir())
     data = json.loads(run("npx", "-y", "ccusage@latest", "daily", "--json"))
     return {row["period"]: row["totalTokens"] for row in data["daily"]}
 
