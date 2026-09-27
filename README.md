@@ -1,4 +1,4 @@
-# Im Zeke 
+# I'm Zechariah I go by Zeke 
 
 I like building & researching dope things
 
