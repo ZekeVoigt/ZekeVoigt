@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 """Draw the README's activity grid and its hover page, then push them.
 
-One square per day for the last year, shaded by AI tokens. Each day also carries
-GitHub contributions and WakaTime coding time:
+One square per day for the last year, shaded by active time. Each day also carries
+contributions and active time:
 
   assets/activity.svg   the grid, as an image in the README (GitHub allows no hover there)
   docs/index.html       the same grid on GitHub Pages, with a tooltip per day
   assets/activity.json  every day's tokens and seconds ever seen -- the local logs get pruned
 
-Sources: ccusage (this Mac's agent logs), `gh api graphql` (contributions), and the
-WakaTime API with the key its editor plugin writes to ~/.wakatime.cfg (skipped until then).
+Sources: ccusage (tokens); contributions are GitHub's count or, if higher, Zeke's commits in
+the git repos on this Mac (most never reach GitHub); active time is the timestamps of the agent logs,
+the commits, VS Code / Cursor / Windsurf file saves and Cursor's AI chats, with gaps of at most 15 minutes joined, or WakaTime's, if higher (read
+with the key its editor plugin writes to ~/.wakatime.cfg, skipped until then).
 Commits as the github-actions bot, so the daily commit is not one of Zeke's contributions.
-Run twice a day by ~/Library/LaunchAgents/com.zekevoigt.readme-tokens.plist.
+Run hourly by ~/Library/LaunchAgents/com.zekevoigt.readme-tokens.plist.
 """
 import base64
 import configparser
@@ -19,6 +21,8 @@ import datetime as dt
 import html
 import json
 import os
+import re
+import sqlite3
 import subprocess
 import sys
 import urllib.request
@@ -28,13 +32,22 @@ REPO = Path(__file__).resolve().parent.parent
 LOG = REPO / "assets" / "activity.json"
 SVG = REPO / "assets" / "activity.svg"
 PAGE = REPO / "docs" / "index.html"
-PAGE_URL = "https://zekevoigt.github.io/ZekeVoigt/"
+CACHE = Path.home() / ".cache" / "readme-activity.json"  # per log file: its active minutes
+AGENT_LOGS = [Path.home() / ".codex" / "sessions", Path.home() / ".codex" / "archived_sessions",
+              Path.home() / ".claude" / "projects"]
+EDITOR_HISTORY = [Path.home() / "Library" / "Application Support" / app / "User" / "History"
+                  for app in ("Code", "Cursor", "Windsurf")]  # a timestamp per file save
+CURSOR_DB = (Path.home() / "Library" / "Application Support" / "Cursor" / "User"
+             / "globalStorage" / "state.vscdb")  # its AI chats: when each began, last changed
+AUTHOR = re.compile(r"zeke", re.I)
+GAP = 15  # minutes; a longer pause ends a stretch of work, as WakaTime counts it
+STAMP = re.compile(rb'"timestamp":\s*"(\d{4}-\d\d-\d\dT\d\d:\d\d)')
 BOT = "github-actions[bot]"
 BOT_EMAIL = "41898282+github-actions[bot]@users.noreply.github.com"
 
 CELL, PITCH, LEFT, TOP = 10, 13, 32, 44
-LIGHT = ["#eff2f5", "#aceebb", "#4ac26b", "#2da44e", "#116329"]
-DARK = ["#151b23", "#033a16", "#196c2e", "#2ea043", "#56d364"]
+LIGHT = ["#eff2f5", "#b6e3ff", "#54aeff", "#0969da", "#0a3069"]
+DARK = ["#151b23", "#0c2d6b", "#1158c7", "#388bfd", "#79c0ff"]
 
 os.environ["PATH"] = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:" + os.environ.get("PATH", "")
 
@@ -54,6 +67,98 @@ def contributions():
     cal = json.loads(run("gh", "api", "graphql", "-f", f"query={q}"))
     weeks = cal["data"]["viewer"]["contributionsCollection"]["contributionCalendar"]["weeks"]
     return {d["date"]: d["contributionCount"] for w in weeks for d in w["contributionDays"]}
+
+
+def commits():
+    """Zeke's commits in every git repo under ~ (not Library): {hash: epoch seconds}."""
+    found = subprocess.run(  # not run(): find exits 1 on any unreadable dir
+        ["find", str(Path.home()), "-maxdepth", "6", "-name", ".git",
+         "-not", "-path", "*/node_modules/*", "-not", "-path", f"{Path.home()}/Library/*",
+         "-not", "-path", f"{Path.home()}/.*"],
+        capture_output=True, text=True).stdout
+    seen = {}
+    for git_dir in found.splitlines():
+        try:
+            out = run("git", "-C", str(Path(git_dir).parent), "log", "--all",
+                      "--since=13 months ago", "--format=%H %at %an %ae")
+        except subprocess.CalledProcessError:
+            continue
+        for line in out.splitlines():
+            h, at, who = line.split(" ", 2)
+            if AUTHOR.search(who) and "[bot]" not in who:
+                seen[h] = int(at)
+    return seen
+
+
+def agent_minutes():
+    """Every minute (epoch // 60) an agent log wrote in. Unchanged files come from CACHE."""
+    try:
+        cache = json.loads(CACHE.read_text())
+    except (OSError, ValueError):
+        cache = {}
+    fresh = {}
+    for root in AGENT_LOGS:
+        for f in root.rglob("*.jsonl"):
+            st = f.stat()
+            key = str(f)
+            sig = f"{st.st_size}:{int(st.st_mtime)}"
+            if cache.get(key, {}).get("sig") == sig:
+                fresh[key] = cache[key]
+                continue
+            mins = {int(dt.datetime.strptime(m.decode(), "%Y-%m-%dT%H:%M")
+                        .replace(tzinfo=dt.timezone.utc).timestamp()) // 60
+                    for m in STAMP.findall(f.read_bytes())}
+            fresh[key] = {"sig": sig, "mins": sorted(mins)}
+    CACHE.parent.mkdir(parents=True, exist_ok=True)
+    CACHE.write_text(json.dumps(fresh))
+    return {m for v in fresh.values() for m in v["mins"]}
+
+
+def editor_minutes():
+    mins = set()
+    for root in EDITOR_HISTORY:
+        for f in root.glob("*/entries.json"):
+            try:
+                entries = json.loads(f.read_text()).get("entries", [])
+            except (OSError, ValueError):
+                continue
+            mins.update(e["timestamp"] // 60000 for e in entries if "timestamp" in e)
+    return mins
+
+
+def cursor_chat_minutes():
+    """Cursor's chats' createdAt and lastUpdatedAt. The DB is big: cached until it changes."""
+    if not CURSOR_DB.exists():
+        return set()
+    st = CURSOR_DB.stat()
+    sig = f"{st.st_size}:{int(st.st_mtime)}"
+    cache = CACHE.with_name("readme-activity-cursor.json")
+    try:
+        hit = json.loads(cache.read_text())
+        if hit["sig"] == sig:
+            return set(hit["mins"])
+    except (OSError, ValueError, KeyError):
+        pass
+    db = sqlite3.connect(f"file:{CURSOR_DB}?mode=ro&immutable=1", uri=True)
+    rows = db.execute("select value from cursorDiskKV where key like 'composerData:%'"
+                      " and value is not null")
+    stamp = re.compile(r'"(?:createdAt|lastUpdatedAt)":(\d{13})')
+    mins = {int(ms) // 60000 for (v,) in rows for ms in stamp.findall(str(v))}
+    db.close()
+    cache.write_text(json.dumps({"sig": sig, "mins": sorted(mins)}))
+    return mins
+
+
+def active_seconds(minutes):
+    """Per local day: the minutes of work, a gap of at most GAP minutes counted as worked."""
+    out = {}
+    prev = None
+    for m in sorted(minutes):
+        day = dt.datetime.fromtimestamp(m * 60).date().isoformat()
+        step = m - prev if prev is not None and m - prev <= GAP else 1
+        out[day] = out.get(day, 0) + step * 60
+        prev = m
+    return out
 
 
 def coding_seconds(start, end):
@@ -122,7 +227,7 @@ def ordinal(d):
 
 
 def draw(days, total, interactive):
-    level = levels([t for *_, t, _, _ in days])
+    level = levels([s for *_, s in days])
     weeks = days[-1][0] + 1
     W = LEFT + weeks * PITCH + 12
     H = TOP + 7 * PITCH + 34
@@ -141,7 +246,7 @@ def draw(days, total, interactive):
         if interactive:
             attrs = (f' tabindex="0" data-date="{html.escape(ordinal(d))}" data-t="{tok}"'
                      f' data-c="{con}" data-s="{sec}"')
-        out.append(f'<rect class="c l{level(tok)}" x="{LEFT + col * PITCH}" y="{TOP + row * PITCH}"'
+        out.append(f'<rect class="c l{level(sec)}" x="{LEFT + col * PITCH}" y="{TOP + row * PITCH}"'
                    f' width="{CELL}" height="{CELL}" rx="2"{attrs}/>')
 
     ly = TOP + 7 * PITCH + 14
@@ -155,7 +260,7 @@ def draw(days, total, interactive):
 
     swatch = "\n".join(f"  .l{i} {{ fill: {c}; }}" for i, c in enumerate(LIGHT))
     swatch_dark = "\n".join(f"    .l{i} {{ fill: {c}; }}" for i, c in enumerate(DARK))
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{short(total)} AI tokens in the last year, one square per day">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{total} in the last year, one square per day">
 <style>
   text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }}
   .title {{ fill: #1f2328; font-size: 16px; }}
@@ -169,7 +274,7 @@ def draw(days, total, interactive):
 {swatch_dark}
   }}
 </style>
-<text class="title" x="{LEFT}" y="18">{short(total)} AI tokens in the last year</text>
+<text class="title" x="{LEFT}" y="18">{total} in the last year</text>
 {chr(10).join(out)}
 </svg>
 """
@@ -223,7 +328,7 @@ function show(el) {{
   tip.innerHTML = `<b>${{el.dataset.date}}</b>`
     + line(t, `${{short(t)}} AI tokens`, "No AI tokens")
     + line(c, `${{c}} contribution${{c === 1 ? "" : "s"}}`, "No contributions")
-    + line(s, `${{dur(s)}} coding`, "No coding time");
+    + line(s, `${{dur(s)}} active`, "No active time");
   const r = el.getBoundingClientRect();
   const half = tip.offsetWidth / 2 + 8;
   tip.style.left = Math.min(Math.max(r.left + r.width / 2, half), innerWidth - half) + "px";
@@ -253,10 +358,22 @@ def main():
     log = json.loads(LOG.read_text()) if LOG.exists() else {}
     merge(log, "tokens", tokens())
     merge(log, "seconds", coding_seconds(today - dt.timedelta(days=13), today))
+    done = commits()
+    merge(log, "seconds", active_seconds(agent_minutes() | editor_minutes() | cursor_chat_minutes()
+                                         | {at // 60 for at in done.values()}))
+    local = {}
+    for at in done.values():
+        day = dt.date.fromtimestamp(at).isoformat()
+        local[day] = local.get(day, 0) + 1
+    merge(log, "commits", local)
     LOG.write_text(json.dumps(dict(sorted(log.items())), indent=1) + "\n")
 
-    days = grid(log, contributions(), today)
-    total = sum(t for *_, t, _, _ in days)
+    contrib = contributions()
+    for day, row in log.items():
+        contrib[day] = max(contrib.get(day, 0), row.get("commits", 0))
+    days = grid(log, contrib, today)
+    hours = sum(s for *_, s in days) // 3600
+    total = f"{hours:,} hours active · {short(sum(t for *_, t, _, _ in days))} AI tokens"
     SVG.write_text(draw(days, total, interactive=False))
     PAGE.parent.mkdir(exist_ok=True)
     PAGE.write_text(page(draw(days, total, interactive=True)))
