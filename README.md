@@ -8,4 +8,4 @@ I like building dope things
 
 ## Activity
 
-<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=139e1b47" width="100%" alt="Activity: one square per day"></a>
+<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=25bb96af" width="100%" alt="Activity: one square per day"></a>
