@@ -1113,19 +1113,19 @@
   "seconds": 1980
  },
  "2026-02-04": {
-  "tokens": 43619808,
-  "seconds": 9600
+  "seconds": 9600,
+  "codex": 43619808
  },
  "2026-02-05": {
-  "tokens": 1216302,
-  "seconds": 360
+  "seconds": 360,
+  "codex": 1216302
  },
  "2026-02-06": {
   "seconds": 60
  },
  "2026-02-07": {
-  "tokens": 6140235,
-  "seconds": 2040
+  "seconds": 2040,
+  "codex": 6140235
  },
  "2026-02-10": {
   "seconds": 60
@@ -1134,16 +1134,16 @@
   "seconds": 60
  },
  "2026-02-12": {
-  "tokens": 1753076,
-  "seconds": 660
+  "seconds": 660,
+  "codex": 1753076
  },
  "2026-02-13": {
-  "tokens": 21921620,
-  "seconds": 4200
+  "seconds": 4200,
+  "codex": 21921620
  },
  "2026-02-16": {
-  "tokens": 4949917,
-  "seconds": 2700
+  "seconds": 2700,
+  "codex": 4949917
  },
  "2026-02-17": {
   "seconds": 60
@@ -1152,483 +1152,483 @@
   "seconds": 300
  },
  "2026-02-19": {
-  "tokens": 48238350,
-  "seconds": 12240
+  "seconds": 12240,
+  "codex": 48238350
  },
  "2026-02-20": {
-  "tokens": 42536838,
   "seconds": 12960,
-  "commits": 2
+  "commits": 2,
+  "codex": 42536838
  },
  "2026-02-21": {
-  "tokens": 41329296,
   "seconds": 8760,
-  "commits": 6
+  "commits": 6,
+  "codex": 41329296
  },
  "2026-02-22": {
-  "tokens": 7569428,
   "seconds": 2820,
-  "commits": 2
+  "commits": 2,
+  "codex": 7569428
  },
  "2026-02-23": {
-  "tokens": 72830388,
   "seconds": 13680,
-  "commits": 2
+  "commits": 2,
+  "codex": 72830388
  },
  "2026-02-24": {
   "seconds": 60
  },
  "2026-02-25": {
-  "tokens": 132262,
-  "seconds": 120
+  "seconds": 120,
+  "codex": 132262
  },
  "2026-02-26": {
-  "tokens": 13243548,
-  "seconds": 1560
+  "seconds": 1560,
+  "codex": 13243548
  },
  "2026-02-27": {
-  "tokens": 35805534,
-  "seconds": 5400
+  "seconds": 5400,
+  "codex": 35805534
  },
  "2026-03-01": {
-  "tokens": 1004968,
-  "seconds": 300
+  "seconds": 300,
+  "codex": 1004968
  },
  "2026-03-02": {
-  "tokens": 30266794,
-  "seconds": 7980
+  "seconds": 7980,
+  "codex": 30266794
  },
  "2026-03-03": {
-  "tokens": 6913143,
-  "seconds": 6360
+  "seconds": 6360,
+  "codex": 6913143
  },
  "2026-03-04": {
-  "tokens": 52428220,
-  "seconds": 6120
+  "seconds": 6120,
+  "codex": 52428220
  },
  "2026-03-05": {
-  "tokens": 53557283,
-  "seconds": 9660
+  "seconds": 9660,
+  "codex": 53557283
  },
  "2026-03-06": {
-  "tokens": 15442427,
-  "seconds": 2400
+  "seconds": 2400,
+  "codex": 15442427
  },
  "2026-03-07": {
-  "tokens": 63815548,
   "seconds": 8940,
-  "commits": 27
+  "commits": 27,
+  "codex": 63815548
  },
  "2026-03-08": {
-  "tokens": 21315643,
   "seconds": 2400,
-  "commits": 10
+  "commits": 10,
+  "codex": 21315643
  },
  "2026-03-09": {
   "seconds": 360
  },
  "2026-03-10": {
-  "tokens": 46935533,
-  "seconds": 8220
+  "seconds": 8220,
+  "codex": 46935533
  },
  "2026-03-11": {
-  "tokens": 36443787,
-  "seconds": 4800
+  "seconds": 4800,
+  "codex": 36443787
  },
  "2026-03-12": {
-  "tokens": 50770742,
-  "seconds": 9540
+  "seconds": 9540,
+  "codex": 50770742
  },
  "2026-03-13": {
-  "tokens": 17659560,
-  "seconds": 3540
+  "seconds": 3540,
+  "codex": 17659560
  },
  "2026-03-14": {
-  "tokens": 61122214,
-  "seconds": 15720
+  "seconds": 15720,
+  "codex": 61122214
  },
  "2026-03-15": {
-  "tokens": 72654630,
-  "seconds": 12180
+  "seconds": 12180,
+  "codex": 72654630
  },
  "2026-03-16": {
-  "tokens": 67602573,
-  "seconds": 9720
+  "seconds": 9720,
+  "codex": 67602573
  },
  "2026-03-17": {
-  "tokens": 39525045,
-  "seconds": 7080
+  "seconds": 7080,
+  "codex": 39525045
  },
  "2026-03-18": {
-  "tokens": 85887775,
-  "seconds": 18480
+  "seconds": 18480,
+  "codex": 85887775
  },
  "2026-03-19": {
-  "tokens": 193485573,
-  "seconds": 34080
+  "seconds": 34080,
+  "codex": 193485573
  },
  "2026-03-20": {
-  "tokens": 199880249,
-  "seconds": 26820
+  "seconds": 26820,
+  "codex": 199880249
  },
  "2026-03-21": {
-  "tokens": 112852844,
-  "seconds": 16860
+  "seconds": 16860,
+  "codex": 112852844
  },
  "2026-03-22": {
-  "tokens": 61696640,
-  "seconds": 7980
+  "seconds": 7980,
+  "codex": 61696640
  },
  "2026-03-23": {
-  "tokens": 19669914,
-  "seconds": 3960
+  "seconds": 3960,
+  "codex": 19669914
  },
  "2026-03-24": {
-  "tokens": 32678298,
-  "seconds": 5520
+  "seconds": 5520,
+  "codex": 32678298
  },
  "2026-03-25": {
-  "tokens": 155307925,
-  "seconds": 25980
+  "seconds": 25980,
+  "codex": 155307925
  },
  "2026-03-26": {
-  "tokens": 87364770,
-  "seconds": 13080
+  "seconds": 13080,
+  "codex": 87364770
  },
  "2026-03-27": {
-  "tokens": 172615807,
-  "seconds": 22260
+  "seconds": 22260,
+  "codex": 172615807
  },
  "2026-03-28": {
-  "tokens": 70084451,
-  "seconds": 7500
+  "seconds": 7500,
+  "codex": 70084451
  },
  "2026-03-29": {
-  "tokens": 63687634,
-  "seconds": 7740
+  "seconds": 7740,
+  "codex": 63687634
  },
  "2026-03-30": {
-  "tokens": 183398650,
-  "seconds": 24480
+  "seconds": 24480,
+  "codex": 183398650
  },
  "2026-03-31": {
-  "tokens": 124134311,
-  "seconds": 18960
+  "seconds": 18960,
+  "codex": 124134311
  },
  "2026-04-01": {
-  "tokens": 186247107,
-  "seconds": 33600
+  "seconds": 33600,
+  "codex": 186247107
  },
  "2026-04-02": {
-  "tokens": 285108218,
-  "seconds": 42780
+  "seconds": 42780,
+  "codex": 285108218
  },
  "2026-04-03": {
-  "tokens": 194882017,
-  "seconds": 34500
+  "seconds": 34500,
+  "codex": 194882017
  },
  "2026-04-04": {
-  "tokens": 87996950,
-  "seconds": 13200
+  "seconds": 13200,
+  "codex": 87996950
  },
  "2026-04-05": {
-  "tokens": 112225278,
-  "seconds": 13680
+  "seconds": 13680,
+  "codex": 112225278
  },
  "2026-04-06": {
-  "tokens": 78152823,
-  "seconds": 14760
+  "seconds": 14760,
+  "codex": 78152823
  },
  "2026-04-07": {
-  "tokens": 105829242,
-  "seconds": 13380
+  "seconds": 13380,
+  "codex": 105829242
  },
  "2026-04-08": {
-  "tokens": 135067478,
-  "seconds": 30540
+  "seconds": 30540,
+  "codex": 135067478
  },
  "2026-04-09": {
-  "tokens": 116519059,
-  "seconds": 16800
+  "seconds": 16800,
+  "codex": 116519059
  },
  "2026-04-10": {
-  "tokens": 51400687,
-  "seconds": 10620
+  "seconds": 10620,
+  "codex": 51400687
  },
  "2026-04-11": {
-  "tokens": 28322701,
-  "seconds": 3780
+  "seconds": 3780,
+  "codex": 28322701
  },
  "2026-04-12": {
-  "tokens": 51225961,
-  "seconds": 8460
+  "seconds": 8460,
+  "codex": 51225961
  },
  "2026-04-13": {
-  "tokens": 27027425,
-  "seconds": 5040
+  "seconds": 5040,
+  "codex": 27027425
  },
  "2026-04-14": {
-  "tokens": 37783951,
-  "seconds": 7380
+  "seconds": 7380,
+  "codex": 37783951
  },
  "2026-04-15": {
-  "tokens": 87897536,
-  "seconds": 19740
+  "seconds": 19740,
+  "codex": 87897536
  },
  "2026-04-16": {
-  "tokens": 28027549,
-  "seconds": 4620
+  "seconds": 4620,
+  "codex": 28027549
  },
  "2026-04-17": {
-  "tokens": 9002365,
-  "seconds": 1080
+  "seconds": 1080,
+  "codex": 9002365
  },
  "2026-04-18": {
-  "tokens": 86211725,
-  "seconds": 13320
+  "seconds": 13320,
+  "codex": 86211725
  },
  "2026-04-19": {
-  "tokens": 31717287,
-  "seconds": 2940
+  "seconds": 2940,
+  "codex": 31717287
  },
  "2026-04-20": {
-  "tokens": 74169434,
-  "seconds": 10800
+  "seconds": 10800,
+  "codex": 74169434
  },
  "2026-04-21": {
-  "tokens": 125907270,
-  "seconds": 14460
+  "seconds": 14460,
+  "codex": 125907270
  },
  "2026-04-22": {
-  "tokens": 37811311,
-  "seconds": 2340
+  "seconds": 2340,
+  "codex": 37811311
  },
  "2026-04-23": {
-  "tokens": 37703221,
-  "seconds": 5460
+  "seconds": 5460,
+  "codex": 37703221
  },
  "2026-04-24": {
-  "tokens": 28294245,
   "seconds": 7320,
-  "commits": 2
+  "commits": 2,
+  "codex": 28294245
  },
  "2026-04-25": {
-  "tokens": 12769399,
-  "seconds": 3600
+  "seconds": 3600,
+  "codex": 12769399
  },
  "2026-04-26": {
-  "tokens": 54813496,
   "seconds": 4260,
-  "commits": 7
+  "commits": 7,
+  "codex": 54813496
  },
  "2026-04-28": {
-  "tokens": 35516737,
-  "seconds": 5280
+  "seconds": 5280,
+  "codex": 35516737
  },
  "2026-04-29": {
-  "tokens": 60019441,
-  "seconds": 8640
+  "seconds": 8640,
+  "codex": 60019441
  },
  "2026-04-30": {
-  "tokens": 26813814,
   "seconds": 3780,
-  "commits": 1
+  "commits": 1,
+  "codex": 26813814
  },
  "2026-05-01": {
-  "tokens": 21916067,
   "seconds": 4500,
-  "commits": 1
+  "commits": 1,
+  "codex": 21916067
  },
  "2026-05-02": {
-  "tokens": 42855950,
-  "seconds": 7140
+  "seconds": 7140,
+  "codex": 42855950
  },
  "2026-05-03": {
-  "tokens": 15374032,
   "seconds": 3420,
-  "commits": 4
+  "commits": 4,
+  "codex": 15374032
  },
  "2026-05-04": {
-  "tokens": 88568545,
   "seconds": 17400,
-  "commits": 6
+  "commits": 6,
+  "codex": 88568545
  },
  "2026-05-05": {
-  "tokens": 40637240,
   "seconds": 7740,
-  "commits": 1
+  "commits": 1,
+  "codex": 40637240
  },
  "2026-05-06": {
-  "tokens": 28444589,
   "seconds": 3960,
-  "commits": 2
+  "commits": 2,
+  "codex": 28444589
  },
  "2026-05-07": {
-  "tokens": 58933283,
-  "seconds": 7620
+  "seconds": 7620,
+  "codex": 58933283
  },
  "2026-05-08": {
-  "tokens": 29846034,
   "seconds": 4200,
-  "commits": 4
+  "commits": 4,
+  "codex": 29846034
  },
  "2026-05-09": {
-  "tokens": 89868429,
-  "seconds": 10560
+  "seconds": 10560,
+  "codex": 89868429
  },
  "2026-05-10": {
-  "tokens": 37571467,
   "seconds": 4080,
-  "commits": 1
+  "commits": 1,
+  "codex": 37571467
  },
  "2026-05-11": {
-  "tokens": 11500197,
-  "seconds": 2880
+  "seconds": 2880,
+  "codex": 11500197
  },
  "2026-05-13": {
-  "tokens": 27575763,
   "seconds": 5640,
-  "commits": 6
+  "commits": 6,
+  "codex": 27575763
  },
  "2026-05-14": {
-  "tokens": 12826106,
-  "seconds": 2520
+  "seconds": 2520,
+  "codex": 12826106
  },
  "2026-05-15": {
-  "tokens": 10794114,
   "seconds": 2040,
-  "commits": 3
+  "commits": 3,
+  "codex": 10794114
  },
  "2026-05-16": {
-  "tokens": 10334003,
-  "seconds": 1620
+  "seconds": 1620,
+  "codex": 10334003
  },
  "2026-05-17": {
-  "tokens": 6960493,
-  "seconds": 1800
+  "seconds": 1800,
+  "codex": 6960493
  },
  "2026-05-19": {
-  "tokens": 37670974,
-  "seconds": 4260
+  "seconds": 4260,
+  "codex": 37670974
  },
  "2026-05-26": {
-  "tokens": 37928445,
-  "seconds": 3240
+  "seconds": 3240,
+  "codex": 37928445
  },
  "2026-05-27": {
-  "tokens": 73910205,
-  "seconds": 7140
+  "seconds": 7140,
+  "codex": 73910205
  },
  "2026-05-28": {
-  "tokens": 5543313,
   "seconds": 3060,
-  "commits": 9
+  "commits": 9,
+  "codex": 5543313
  },
  "2026-05-29": {
-  "tokens": 10089541,
-  "seconds": 1200
+  "seconds": 1200,
+  "codex": 10089541
  },
  "2026-06-02": {
-  "tokens": 10429063,
-  "seconds": 1140
+  "seconds": 1140,
+  "codex": 10429063
  },
  "2026-06-04": {
-  "tokens": 2808026,
-  "seconds": 180
+  "seconds": 180,
+  "codex": 2808026
  },
  "2026-06-06": {
-  "tokens": 480797,
-  "seconds": 180
+  "seconds": 180,
+  "codex": 480797
  },
  "2026-06-09": {
-  "tokens": 2050559,
   "seconds": 360,
-  "commits": 8
+  "commits": 8,
+  "codex": 2050559
  },
  "2026-06-10": {
-  "tokens": 2465843,
   "seconds": 1800,
-  "commits": 3
+  "commits": 3,
+  "codex": 2465843
  },
  "2026-06-11": {
-  "tokens": 13495594,
   "seconds": 2280,
-  "commits": 4
+  "commits": 4,
+  "codex": 13495594
  },
  "2026-06-12": {
-  "tokens": 8686902,
   "seconds": 1380,
-  "commits": 7
+  "commits": 7,
+  "codex": 8686902
  },
  "2026-06-14": {
-  "tokens": 6476027,
-  "seconds": 1440
+  "seconds": 1440,
+  "codex": 6476027
  },
  "2026-07-03": {
-  "tokens": 212334,
-  "seconds": 120
+  "seconds": 120,
+  "codex": 212334
  },
  "2026-07-08": {
-  "tokens": 6393420,
-  "seconds": 4680
+  "seconds": 4680,
+  "codex": 6393420
  },
  "2026-07-09": {
-  "tokens": 8544303,
   "seconds": 3240,
-  "commits": 3
+  "commits": 3,
+  "codex": 8544303
  },
  "2026-07-10": {
-  "tokens": 36303519,
   "seconds": 5880,
-  "commits": 4
+  "commits": 4,
+  "codex": 36303519
  },
  "2026-07-11": {
-  "tokens": 13731616,
-  "seconds": 5220
+  "seconds": 5220,
+  "codex": 13731616
  },
  "2026-07-12": {
-  "tokens": 55759871,
-  "seconds": 10860
+  "seconds": 10860,
+  "codex": 55759871
  },
  "2026-07-13": {
-  "tokens": 13261423,
-  "seconds": 1500
+  "seconds": 1500,
+  "codex": 13261423
  },
  "2026-07-14": {
-  "tokens": 112312277,
-  "seconds": 17400
+  "seconds": 17400,
+  "codex": 112312277
  },
  "2026-07-15": {
-  "tokens": 96038123,
   "seconds": 15660,
-  "commits": 6
+  "commits": 6,
+  "codex": 96038123
  },
  "2026-07-16": {
-  "tokens": 133344970,
   "seconds": 14520,
-  "commits": 7
+  "commits": 7,
+  "codex": 133344970
  },
  "2026-07-17": {
-  "tokens": 218392357,
   "seconds": 30360,
-  "commits": 1
+  "commits": 1,
+  "codex": 218392357
  },
  "2026-07-18": {
-  "tokens": 30920465,
-  "seconds": 5220
+  "seconds": 5220,
+  "codex": 30920465
  },
  "2026-07-19": {
-  "tokens": 24830416,
-  "seconds": 8100
+  "seconds": 8100,
+  "codex": 24830416
  },
  "2026-07-20": {
-  "tokens": 178889346,
   "seconds": 17040,
-  "commits": 1
+  "commits": 1,
+  "codex": 178889346
  },
  "2026-07-21": {
-  "tokens": 194344224,
-  "seconds": 13200
+  "seconds": 13200,
+  "codex": 194344224
  },
  "2026-07-22": {
   "seconds": 60
@@ -1638,76 +1638,76 @@
   "commits": 2
  },
  "2026-07-29": {
-  "tokens": 917306,
-  "seconds": 300
+  "seconds": 300,
+  "codex": 917306
  },
  "2026-07-30": {
-  "tokens": 74228278,
-  "seconds": 9420
+  "seconds": 9420,
+  "codex": 74228278
  },
  "2026-07-31": {
-  "tokens": 32637056,
-  "seconds": 4860
+  "seconds": 4860,
+  "codex": 32637056
  },
  "2026-08-01": {
-  "tokens": 246173,
   "seconds": 300,
-  "commits": 1
+  "commits": 1,
+  "codex": 246173
  },
  "2026-08-02": {
-  "tokens": 1325571,
   "seconds": 720,
-  "commits": 1
+  "commits": 1,
+  "codex": 1325571
  },
  "2026-08-04": {
-  "tokens": 2004660,
   "seconds": 1560,
-  "commits": 30
+  "commits": 30,
+  "codex": 2004660
  },
  "2026-08-05": {
-  "tokens": 62839271,
   "seconds": 15000,
-  "commits": 14
+  "commits": 14,
+  "codex": 62839271
  },
  "2026-08-06": {
-  "tokens": 129805992,
-  "seconds": 14400
+  "seconds": 14400,
+  "codex": 129805992
  },
  "2026-08-07": {
   "seconds": 240
  },
  "2026-08-08": {
-  "tokens": 122677452,
   "seconds": 20580,
-  "commits": 8
+  "commits": 8,
+  "codex": 122677452
  },
  "2026-08-09": {
-  "tokens": 69028925,
   "seconds": 18480,
-  "commits": 15
+  "commits": 15,
+  "codex": 69028925
  },
  "2026-08-10": {
-  "tokens": 11333465,
   "seconds": 4800,
-  "commits": 11
+  "commits": 11,
+  "codex": 11333465
  },
  "2026-08-11": {
-  "tokens": 197852,
-  "seconds": 900
+  "seconds": 900,
+  "codex": 197852
  },
  "2026-08-12": {
-  "tokens": 1189519,
-  "seconds": 3960
+  "seconds": 3960,
+  "codex": 1189519
  },
  "2026-08-13": {
-  "tokens": 178433348,
   "seconds": 35520,
-  "commits": 10
+  "commits": 10,
+  "codex": 178433348
  },
  "2026-08-14": {
-  "tokens": 40745295,
   "seconds": 9600,
-  "commits": 13
+  "commits": 13,
+  "codex": 40745295
  },
  "2026-08-15": {
   "seconds": 780,
@@ -1718,28 +1718,28 @@
   "commits": 6
  },
  "2026-08-20": {
-  "tokens": 95459039,
   "seconds": 19920,
-  "commits": 38
+  "commits": 38,
+  "codex": 95459039
  },
  "2026-08-21": {
-  "tokens": 32947636,
-  "seconds": 6900
+  "seconds": 6900,
+  "codex": 32947636
  },
  "2026-08-23": {
-  "tokens": 26575,
   "seconds": 3300,
-  "commits": 29
+  "commits": 29,
+  "codex": 26544
  },
  "2026-08-24": {
-  "tokens": 129796722,
   "seconds": 24120,
-  "commits": 34
+  "commits": 34,
+  "codex": 129794987
  },
  "2026-08-25": {
-  "tokens": 22613462,
   "seconds": 10680,
-  "commits": 32
+  "commits": 32,
+  "codex": 22613462
  },
  "2026-08-26": {
   "seconds": 2100,
@@ -1818,14 +1818,14 @@
   "commits": 1
  },
  "2026-09-15": {
-  "tokens": 6729624,
   "seconds": 10140,
-  "commits": 6
+  "commits": 6,
+  "codex": 6729624
  },
  "2026-09-16": {
-  "tokens": 3325782,
   "seconds": 9060,
-  "commits": 12
+  "commits": 12,
+  "codex": 3325782
  },
  "2026-09-17": {
   "seconds": 240,
@@ -1844,9 +1844,9 @@
   "commits": 9
  },
  "2026-09-21": {
-  "tokens": 104731,
   "seconds": 3300,
-  "commits": 34
+  "commits": 34,
+  "codex": 104731
  },
  "2026-09-22": {
   "seconds": 2400,
@@ -1865,13 +1865,15 @@
   "commits": 19
  },
  "2026-09-26": {
-  "tokens": 26539041,
   "seconds": 7620,
-  "commits": 23
+  "commits": 23,
+  "claude": 21650390,
+  "codex": 4888651
  },
  "2026-09-27": {
-  "tokens": 48636162,
-  "seconds": 6480,
-  "commits": 22
+  "seconds": 6960,
+  "commits": 25,
+  "claude": 52435204,
+  "codex": 0
  }
 }
