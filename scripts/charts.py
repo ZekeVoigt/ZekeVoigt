@@ -18,6 +18,7 @@ Run hourly by ~/Library/LaunchAgents/com.zekevoigt.readme-tokens.plist.
 import base64
 import configparser
 import datetime as dt
+import hashlib
 import html
 import json
 import os
@@ -32,6 +33,7 @@ REPO = Path(__file__).resolve().parent.parent
 LOG = REPO / "assets" / "activity.json"
 SVG = REPO / "assets" / "activity.svg"
 PAGE = REPO / "docs" / "index.html"
+README = REPO / "README.md"
 CACHE = Path.home() / ".cache" / "readme-activity.json"  # per log file: its active minutes
 AGENT_LOGS = [Path.home() / ".codex" / "sessions", Path.home() / ".codex" / "archived_sessions",
               *(d / "projects" for d in Path.home().glob(".claude*") if d.is_dir())]
@@ -394,11 +396,15 @@ def main():
     SVG.write_text(draw(days, total, interactive=False))
     PAGE.parent.mkdir(exist_ok=True)
     PAGE.write_text(page(draw(days, total, interactive=True)))
+    # a new ?v= per drawing, so browsers holding the old image fetch this one at once
+    v = hashlib.sha256(SVG.read_bytes()).hexdigest()[:8]
+    README.write_text(re.sub(r'src="assets/activity\.svg[^"]*"', f'src="assets/activity.svg?v={v}"',
+                             README.read_text()))
     if "--no-push" in sys.argv:
         return
     git("pull", "--rebase", "--autostash", "-q")
-    git("add", "assets", "docs")
-    if not git("status", "--porcelain", "assets", "docs").strip():
+    git("add", "assets", "docs", "README.md")
+    if not git("status", "--porcelain", "assets", "docs", "README.md").strip():
         return
     subprocess.run(
         ["git", "-C", str(REPO), "-c", f"user.name={BOT}", "-c", f"user.email={BOT_EMAIL}",
