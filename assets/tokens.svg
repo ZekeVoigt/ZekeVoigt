@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="230" viewBox="0 0 800 230" role="img" aria-label="AI tokens per day, last 90 days: 2.2B total; 7.7B all time">
+<style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  .bg { fill: #ffffff; stroke: #d1d9e0; }
+  .title { fill: #1f2328; font-size: 15px; font-weight: 600; }
+  .sub, .axis { fill: #59636e; font-size: 12px; }
+  .num { fill: #1f2328; font-size: 20px; font-weight: 600; }
+  .grid { stroke: #eaeef2; stroke-width: 1; }
+  .base { stroke: #d1d9e0; stroke-width: 1; }
+  .bar { fill: #2da44e; }
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #0d1117; stroke: #3d444d; }
+    .title, .num { fill: #f0f6fc; }
+    .sub, .axis { fill: #9198a1; }
+    .grid { stroke: #21262d; }
+    .base { stroke: #3d444d; }
+    .bar { fill: #3fb950; }
+  }
+</style>
+<rect class="bg" x="0.5" y="0.5" width="799" height="229" rx="6"/>
+<text class="title" x="20" y="30">AI tokens per day</text>
+<text class="sub" x="20" y="48">AI coding agents · last 90 days · updated Sep 27</text>
+<text class="num" x="780" y="32" text-anchor="end">2.2B</text>
+<text class="sub" x="780" y="48" text-anchor="end">last 90 days · 7.7B all time</text>
+<line class="grid" x1="48" x2="784" y1="130.0" y2="130.0"/>
+<text class="axis" x="40" y="134.0" text-anchor="end">125M</text>
+<line class="grid" x1="48" x2="784" y1="64.0" y2="64.0"/>
+<text class="axis" x="40" y="68.0" text-anchor="end">250M</text>
+<line class="base" x1="48" x2="784" y1="196" y2="196"/>
+<path class="bar" d="M73.3,196 V196.0 Q73.3,195.9 73.4,195.9 H79.8 Q80.0,195.9 80.0,196.0 V196 Z"><title>Jul 3: 212,334 tokens</title></path>
+<path class="bar" d="M114.2,196 V196.0 Q114.2,192.6 117.5,192.6 H117.5 Q120.8,192.6 120.8,196.0 V196 Z"><title>Jul 8: 6,393,420 tokens</title></path>
+<path class="bar" d="M122.3,196 V194.8 Q122.3,191.5 125.7,191.5 H125.7 Q129.0,191.5 129.0,194.8 V196 Z"><title>Jul 9: 8,544,303 tokens</title></path>
+<path class="bar" d="M130.5,196 V180.2 Q130.5,176.8 133.9,176.8 H133.9 Q137.2,176.8 137.2,180.2 V196 Z"><title>Jul 10: 36,303,519 tokens</title></path>
+<path class="bar" d="M138.7,196 V192.1 Q138.7,188.7 142.0,188.7 H142.0 Q145.4,188.7 145.4,192.1 V196 Z"><title>Jul 11: 13,731,616 tokens</title></path>
+<path class="bar" d="M146.9,196 V169.9 Q146.9,166.6 150.2,166.6 H150.2 Q153.6,166.6 153.6,169.9 V196 Z"><title>Jul 12: 55,759,871 tokens</title></path>
+<path class="bar" d="M155.1,196 V192.3 Q155.1,189.0 158.4,189.0 H158.4 Q161.7,189.0 161.7,192.3 V196 Z"><title>Jul 13: 13,261,423 tokens</title></path>
+<path class="bar" d="M163.2,196 V140.0 Q163.2,136.7 166.6,136.7 H166.6 Q169.9,136.7 169.9,140.0 V196 Z"><title>Jul 14: 112,312,277 tokens</title></path>
+<path class="bar" d="M171.4,196 V148.6 Q171.4,145.3 174.8,145.3 H174.8 Q178.1,145.3 178.1,148.6 V196 Z"><title>Jul 15: 96,038,123 tokens</title></path>
+<path class="bar" d="M179.6,196 V128.9 Q179.6,125.6 182.9,125.6 H182.9 Q186.3,125.6 186.3,128.9 V196 Z"><title>Jul 16: 133,344,970 tokens</title></path>
+<path class="bar" d="M187.8,196 V84.0 Q187.8,80.7 191.1,80.7 H191.1 Q194.4,80.7 194.4,84.0 V196 Z"><title>Jul 17: 218,392,357 tokens</title></path>
+<path class="bar" d="M195.9,196 V183.0 Q195.9,179.7 199.3,179.7 H199.3 Q202.6,179.7 202.6,183.0 V196 Z"><title>Jul 18: 30,920,465 tokens</title></path>
+<path class="bar" d="M204.1,196 V186.2 Q204.1,182.9 207.5,182.9 H207.5 Q210.8,182.9 210.8,186.2 V196 Z"><title>Jul 19: 24,830,416 tokens</title></path>
+<path class="bar" d="M212.3,196 V104.9 Q212.3,101.5 215.6,101.5 H215.6 Q219.0,101.5 219.0,104.9 V196 Z"><title>Jul 20: 178,889,346 tokens</title></path>
+<path class="bar" d="M220.5,196 V96.7 Q220.5,93.4 223.8,93.4 H223.8 Q227.2,93.4 227.2,96.7 V196 Z"><title>Jul 21: 194,344,224 tokens</title></path>
+<path class="bar" d="M285.9,196 V196.0 Q285.9,195.5 286.4,195.5 H292.1 Q292.6,195.5 292.6,196.0 V196 Z"><title>Jul 29: 917,306 tokens</title></path>
+<path class="bar" d="M294.1,196 V160.1 Q294.1,156.8 297.4,156.8 H297.4 Q300.8,156.8 300.8,160.1 V196 Z"><title>Jul 30: 74,228,278 tokens</title></path>
+<path class="bar" d="M302.3,196 V182.1 Q302.3,178.8 305.6,178.8 H305.6 Q308.9,178.8 308.9,182.1 V196 Z"><title>Jul 31: 32,637,056 tokens</title></path>
+<path class="bar" d="M310.4,196 V196.0 Q310.4,195.9 310.6,195.9 H317.0 Q317.1,195.9 317.1,196.0 V196 Z"><title>Aug 1: 246,173 tokens</title></path>
+<path class="bar" d="M318.6,196 V196.0 Q318.6,195.3 319.3,195.3 H324.6 Q325.3,195.3 325.3,196.0 V196 Z"><title>Aug 2: 1,325,571 tokens</title></path>
+<path class="bar" d="M335.0,196 V196.0 Q335.0,194.9 336.0,194.9 H340.6 Q341.6,194.9 341.6,196.0 V196 Z"><title>Aug 4: 2,004,660 tokens</title></path>
+<path class="bar" d="M343.1,196 V166.2 Q343.1,162.8 346.5,162.8 H346.5 Q349.8,162.8 349.8,166.2 V196 Z"><title>Aug 5: 62,839,271 tokens</title></path>
+<path class="bar" d="M351.3,196 V130.8 Q351.3,127.5 354.7,127.5 H354.7 Q358.0,127.5 358.0,130.8 V196 Z"><title>Aug 6: 129,805,992 tokens</title></path>
+<path class="bar" d="M367.7,196 V134.6 Q367.7,131.2 371.0,131.2 H371.0 Q374.4,131.2 374.4,134.6 V196 Z"><title>Aug 8: 122,677,452 tokens</title></path>
+<path class="bar" d="M375.9,196 V162.9 Q375.9,159.6 379.2,159.6 H379.2 Q382.5,159.6 382.5,162.9 V196 Z"><title>Aug 9: 69,028,925 tokens</title></path>
+<path class="bar" d="M384.0,196 V193.4 Q384.0,190.0 387.4,190.0 H387.4 Q390.7,190.0 390.7,193.4 V196 Z"><title>Aug 10: 11,333,465 tokens</title></path>
+<path class="bar" d="M392.2,196 V196.0 Q392.2,195.9 392.3,195.9 H398.8 Q398.9,195.9 398.9,196.0 V196 Z"><title>Aug 11: 197,852 tokens</title></path>
+<path class="bar" d="M400.4,196 V196.0 Q400.4,195.4 401.0,195.4 H406.4 Q407.1,195.4 407.1,196.0 V196 Z"><title>Aug 12: 1,189,519 tokens</title></path>
+<path class="bar" d="M408.6,196 V105.1 Q408.6,101.8 411.9,101.8 H411.9 Q415.2,101.8 415.2,105.1 V196 Z"><title>Aug 13: 178,433,348 tokens</title></path>
+<path class="bar" d="M416.8,196 V177.8 Q416.8,174.5 420.1,174.5 H420.1 Q423.4,174.5 423.4,177.8 V196 Z"><title>Aug 14: 40,745,295 tokens</title></path>
+<path class="bar" d="M465.8,196 V148.9 Q465.8,145.6 469.2,145.6 H469.2 Q472.5,145.6 472.5,148.9 V196 Z"><title>Aug 20: 95,459,039 tokens</title></path>
+<path class="bar" d="M474.0,196 V181.9 Q474.0,178.6 477.3,178.6 H477.3 Q480.7,178.6 480.7,181.9 V196 Z"><title>Aug 21: 32,947,636 tokens</title></path>
+<path class="bar" d="M490.3,196 V196.0 Q490.3,196.0 490.4,196.0 H497.0 Q497.0,196.0 497.0,196.0 V196 Z"><title>Aug 23: 26,575 tokens</title></path>
+<path class="bar" d="M498.5,196 V130.8 Q498.5,127.5 501.9,127.5 H501.9 Q505.2,127.5 505.2,130.8 V196 Z"><title>Aug 24: 129,796,722 tokens</title></path>
+<path class="bar" d="M506.7,196 V187.4 Q506.7,184.1 510.0,184.1 H510.0 Q513.4,184.1 513.4,187.4 V196 Z"><title>Aug 25: 22,613,462 tokens</title></path>
+<path class="bar" d="M678.4,196 V195.8 Q678.4,192.4 681.8,192.4 H681.8 Q685.1,192.4 685.1,195.8 V196 Z"><title>Sep 15: 6,729,624 tokens</title></path>
+<path class="bar" d="M686.6,196 V196.0 Q686.6,194.2 688.4,194.2 H691.5 Q693.3,194.2 693.3,196.0 V196 Z"><title>Sep 16: 3,325,782 tokens</title></path>
+<path class="bar" d="M727.5,196 V196.0 Q727.5,195.9 727.6,195.9 H734.1 Q734.2,195.9 734.2,196.0 V196 Z"><title>Sep 21: 104,731 tokens</title></path>
+<path class="bar" d="M768.4,196 V185.3 Q768.4,182.0 771.7,182.0 H771.7 Q775.1,182.0 775.1,185.3 V196 Z"><title>Sep 26: 26,499,424 tokens</title></path>
+<path class="bar" d="M776.6,196 V175.9 Q776.6,172.6 779.9,172.6 H779.9 Q783.2,172.6 783.2,175.9 V196 Z"><title>Sep 27: 44,323,356 tokens</title></path>
+<text class="axis" x="52.1" y="214" text-anchor="middle">Jun 30</text>
+<text class="axis" x="297.4" y="214" text-anchor="middle">Jul 30</text>
+<text class="axis" x="542.8" y="214" text-anchor="middle">Aug 29</text>
+<text class="axis" x="779.9" y="214" text-anchor="middle">Sep 27</text>
+</svg>
