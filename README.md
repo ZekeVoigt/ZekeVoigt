@@ -8,4 +8,4 @@ I like building dope things
 
 ## Activity
 
-[![AI tokens per day, one square per day](assets/activity.svg)](https://zekevoigt.github.io/ZekeVoigt/)
+<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg" width="100%" alt="Activity: one square per day"></a>
