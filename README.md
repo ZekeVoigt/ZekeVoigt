@@ -1,6 +1,6 @@
 # I'm Zeke 
 
-I like building & researching dope things
+I like building & researching cool things.
 
 ## Current project 
 
