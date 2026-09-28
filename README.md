@@ -8,4 +8,4 @@ I like building & researching cool things.
 
 ## Activity
 
-<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=c3aec31a" alt="Activity: one square per day"></a>
+<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=720939db" alt="Activity: one square per day"></a>
