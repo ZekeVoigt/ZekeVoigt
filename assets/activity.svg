@@ -152,7 +152,7 @@
 <rect class="c l0" x="240" y="57" width="10" height="10" rx="2"/>
 <rect class="c l2" x="240" y="70" width="10" height="10" rx="2"/>
 <rect class="c l1" x="240" y="83" width="10" height="10" rx="2"/>
-<rect class="c l2" x="240" y="96" width="10" height="10" rx="2"/>
+<rect class="c l3" x="240" y="96" width="10" height="10" rx="2"/>
 <rect class="c l0" x="240" y="109" width="10" height="10" rx="2"/>
 <rect class="c l2" x="240" y="122" width="10" height="10" rx="2"/>
 <rect class="c l0" x="253" y="44" width="10" height="10" rx="2"/>
@@ -245,7 +245,7 @@
 <rect class="c l2" x="409" y="83" width="10" height="10" rx="2"/>
 <rect class="c l3" x="409" y="96" width="10" height="10" rx="2"/>
 <rect class="c l3" x="409" y="109" width="10" height="10" rx="2"/>
-<rect class="c l2" x="409" y="122" width="10" height="10" rx="2"/>
+<rect class="c l3" x="409" y="122" width="10" height="10" rx="2"/>
 <rect class="c l3" x="422" y="44" width="10" height="10" rx="2"/>
 <rect class="c l0" x="422" y="57" width="10" height="10" rx="2"/>
 <rect class="c l3" x="422" y="70" width="10" height="10" rx="2"/>
@@ -402,6 +402,7 @@
 <rect class="c l3" x="695" y="122" width="10" height="10" rx="2"/>
 <rect class="c l4" x="708" y="44" width="10" height="10" rx="2"/>
 <rect class="c l4" x="708" y="57" width="10" height="10" rx="2"/>
+<rect class="c l1" x="708" y="70" width="10" height="10" rx="2"/>
 <text class="lbl" x="616" y="158" text-anchor="end">Less</text>
 <rect class="c l0" x="622" y="149" width="10" height="10" rx="2"/>
 <rect class="c l1" x="635" y="149" width="10" height="10" rx="2"/>
