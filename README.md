@@ -1,6 +1,6 @@
 # i'm Zeke 
 
-i like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in as well. 
+I like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in as well. 
 
 ## Current project 
 
