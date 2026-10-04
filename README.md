@@ -8,4 +8,4 @@ I like building & researching cool things. Most of my work is around Agents both
 
 ## Activity
 
-<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=209a6e3a" alt="Activity: one square per day"></a>
+<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=493b1f2e" alt="Activity: one square per day"></a>
