@@ -7,7 +7,7 @@ its AI tokens (all agents) and contributions:
   assets/activity.svg   the grid, as an image in the README (GitHub allows no hover there)
   docs/index.html       the same grid on GitHub Pages, with a tooltip per day
   assets/activity.json  every day's tokens and seconds ever seen -- the local logs get pruned
-  assets/activity-7d.svg  the last 7 days as one row, dark, for zekevoigt.pages.dev
+  assets/activity-30d.svg  the last 30 days as one row, dark, for zekevoigt.pages.dev
 
 Sources: ccusage (tokens); contributions are GitHub's count or, if higher, Zeke's commits in
 the git repos on this Mac (most never reach GitHub); active time is the timestamps of the agent logs,
@@ -33,7 +33,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 LOG = REPO / "assets" / "activity.json"
 SVG = REPO / "assets" / "activity.svg"
-STRIP_DAYS = 7
+STRIP_DAYS = 30
 STRIP = REPO / "assets" / f"activity-{STRIP_DAYS}d.svg"
 PAGE = REPO / "docs" / "index.html"
 README = REPO / "README.md"
