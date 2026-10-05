@@ -7,7 +7,7 @@ its AI tokens (all agents) and contributions:
   assets/activity.svg   the grid, as an image in the README (GitHub allows no hover there)
   docs/index.html       the same grid on GitHub Pages, with a tooltip per day
   assets/activity.json  every day's tokens and seconds ever seen -- the local logs get pruned
-  assets/activity-30d.svg  the last 30 days as one row, dark, for zekevoigt.pages.dev
+  assets/activity-7d.svg  the last 7 days as one row, dark, for zekevoigt.pages.dev
 
 Sources: ccusage (tokens); contributions are GitHub's count or, if higher, Zeke's commits in
 the git repos on this Mac (most never reach GitHub); active time is the timestamps of the agent logs,
@@ -33,8 +33,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 LOG = REPO / "assets" / "activity.json"
 SVG = REPO / "assets" / "activity.svg"
-STRIP = REPO / "assets" / "activity-30d.svg"
-STRIP_DAYS = 30
+STRIP_DAYS = 7
+STRIP = REPO / "assets" / f"activity-{STRIP_DAYS}d.svg"
 PAGE = REPO / "docs" / "index.html"
 README = REPO / "README.md"
 CACHE = Path.home() / ".cache" / "readme-activity.json"  # per log file: its active minutes
@@ -376,7 +376,7 @@ def draw_strip(log, contrib, today):
     hours = sum(secs) // 3600
     toks = sum(r.get("claude", 0) + r.get("codex", 0) for _, r in rows)
     total = f"{hours:,} hours active · {short(toks)} tokens in the last {STRIP_DAYS} days"
-    W = STRIP_DAYS * pitch - (pitch - cell)
+    W = max(STRIP_DAYS * pitch - (pitch - cell), 7 * len(total))  # wide enough for the title
     H = top + cell + 22
     out = []
     for i, (d, r) in enumerate(rows):
@@ -386,7 +386,7 @@ def draw_strip(log, contrib, today):
                    f'<title>{html.escape(ordinal(d))}</title></rect>')
     ly = top + cell + 18
     out.append(f'<text class="lbl" x="0" y="{ly}">{days[0]:%b} {days[0].day}</text>')
-    out.append(f'<text class="lbl" x="{W}" y="{ly}" text-anchor="end">Today</text>')
+    out.append(f'<text class="lbl" x="{(STRIP_DAYS - 1) * pitch + cell}" y="{ly}" text-anchor="end">Today</text>')
     swatch = "\n".join(f"  .l{i} {{ fill: {c}; }}" for i, c in enumerate(DARK))
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{total}, one square per day">
 <style>
