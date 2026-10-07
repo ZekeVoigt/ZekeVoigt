@@ -12,4 +12,4 @@ I am 20. I like building & researching cool things. Most of my work is around Ag
 
 ## Activity
 
-<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=1752b515" alt="Activity: one square per day"></a>
+<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=77590dd7" alt="Activity: one square per day"></a>
