@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="536" height="66" viewBox="0 0 536 66" role="img" aria-label="111 hours active · 2.8B tokens in the last 30 days, one square per day">
+<svg xmlns="http://www.w3.org/2000/svg" width="536" height="66" viewBox="0 0 536 66" role="img" aria-label="112 hours active · 2.9B tokens in the last 30 days, one square per day">
 <style>
   text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }
   .title { fill: #f0f6fc; font-size: 13px; }
@@ -10,7 +10,7 @@
   .l3 { fill: #bf3989; }
   .l4 { fill: #ff80c8; }
 </style>
-<text class="title" x="0" y="14">111 hours active · 2.8B tokens in the last 30 days</text>
+<text class="title" x="0" y="14">112 hours active · 2.9B tokens in the last 30 days</text>
 <rect class="c l2" x="0" y="30" width="14" height="14" rx="3"><title>September 7th</title></rect>
 <rect class="c l3" x="18" y="30" width="14" height="14" rx="3"><title>September 8th</title></rect>
 <rect class="c l1" x="36" y="30" width="14" height="14" rx="3"><title>September 9th</title></rect>
