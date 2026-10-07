@@ -1,6 +1,6 @@
 # i'm Zeke 
 
-I like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in.
+I am 20. I like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in.
 
 ## Current projects
 
