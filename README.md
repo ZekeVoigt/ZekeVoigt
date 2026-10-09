@@ -1,6 +1,6 @@
 # i'm Zeke 
 
-I am 20, graduated college and like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in.
+I am 20, graduated college and like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in. goal wise i hope to build meaningful tech. i think Ai is an amazing tool in amazing peoples hands which leads me to believe it can help us do amazing things. 
 
 ## Current projects
 
