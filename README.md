@@ -12,4 +12,4 @@ I am 20, graduated college and like building & researching cool things. Most of 
 
 ## Activity
 
-<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=efd79ab9" alt="Activity: one square per day"></a>
+<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=7e5bf47a" alt="Activity: one square per day"></a>
