@@ -1,6 +1,6 @@
 # i'm Zeke 
 
-I am 20, graduated college and like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in. i run a research lab called andromeda, the goal is to discover, create & create a better world. 
+I am 20, graduated college and like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in. i run a research lab called andromeda, the goal is to discover, problem solve & create. 
 
 ## Current projects
 
