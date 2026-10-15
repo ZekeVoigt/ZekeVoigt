@@ -32,7 +32,7 @@
 <rect class="c l3" x="324" y="30" width="14" height="14" rx="3"><title>October 3rd</title></rect>
 <rect class="c l3" x="342" y="30" width="14" height="14" rx="3"><title>October 4th</title></rect>
 <rect class="c l3" x="360" y="30" width="14" height="14" rx="3"><title>October 5th</title></rect>
-<rect class="c l3" x="378" y="30" width="14" height="14" rx="3"><title>October 6th</title></rect>
+<rect class="c l2" x="378" y="30" width="14" height="14" rx="3"><title>October 6th</title></rect>
 <rect class="c l4" x="396" y="30" width="14" height="14" rx="3"><title>October 7th</title></rect>
 <rect class="c l4" x="414" y="30" width="14" height="14" rx="3"><title>October 8th</title></rect>
 <rect class="c l4" x="432" y="30" width="14" height="14" rx="3"><title>October 9th</title></rect>
@@ -40,7 +40,7 @@
 <rect class="c l4" x="468" y="30" width="14" height="14" rx="3"><title>October 11th</title></rect>
 <rect class="c l2" x="486" y="30" width="14" height="14" rx="3"><title>October 12th</title></rect>
 <rect class="c l2" x="504" y="30" width="14" height="14" rx="3"><title>October 13th</title></rect>
-<rect class="c l2" x="522" y="30" width="14" height="14" rx="3"><title>October 14th</title></rect>
+<rect class="c l3" x="522" y="30" width="14" height="14" rx="3"><title>October 14th</title></rect>
 <text class="lbl" x="0" y="62">Sep 15</text>
 <text class="lbl" x="536" y="62" text-anchor="end">Today</text>
 </svg>
