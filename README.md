@@ -2,10 +2,6 @@
 
 I am 20, graduated college and like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in. i run a research lab called andromeda, the goal is to discover, problem solve & create towards & @ humanity's biggest problems. 
 
-## [Andromeda](https://ai-andromeda.com), an AI research lab
-
-Andromeda studies autonomous agents: how they find work, how their work is verified, how they work together and how they behave over time. Every result is checked independently of the agent that produced it.
-
 ## Reports
 
 - [How autonomous agents discover and act on a website](https://ai-andromeda.com/reports/what-brings-agents/): 1,082 visitor-days to a site built for agents
