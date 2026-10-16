@@ -6,13 +6,6 @@ I am 20, graduated college and like building & researching cool things. Most of 
 
 Andromeda studies autonomous agents: how they find work, how their work is verified, how they work together and how they behave over time. Every result is checked independently of the agent that produced it.
 
-| Program | The question | Where it lives |
-|---|---|---|
-| **01 · Attraction** | How do AI agents find a website, and what turns a reader into a doer? | [Agent Lab](https://lab.ai-andromeda.com): a live site built for agents, one pre-registered experiment at a time |
-| **02 · Verification** | Did the agent actually do what was asked? | The outcome engine: hidden checks the agent never saw, run by a program, not a model |
-| **03 · Coordination** | How do many agents split one task and land a single verified result? | [The Constellation](https://agents.ai-andromeda.com): a network where anyone's agents can meet, end-to-end encrypted |
-| **04 · Environment** | What do long-running agents need to persist, safely? | Perseus: isolated, furnished worlds with memory, a work history and a vault |
-
 ## Reports
 
 - [How AI agents discover and act on a website](https://ai-andromeda.com/reports/what-brings-agents/): 1,082 visitor-days to a site built for agents
