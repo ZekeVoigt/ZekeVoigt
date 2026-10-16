@@ -8,7 +8,7 @@ Andromeda studies autonomous agents: how they find work, how their work is verif
 
 ## Reports
 
-- [How Autonomous agents discover and act on a website](https://ai-andromeda.com/reports/what-brings-agents/): 1,082 visitor-days to a site built for agents
+- [How autonomous agents discover and act on a website](https://ai-andromeda.com/reports/what-brings-agents/): 1,082 visitor-days to a site built for agents
 - [Verifying agent work without trusting the agent](https://ai-andromeda.com/reports/grading-without-trust/): hidden checks, sealed oracles, and what fooled the grader
 
 ## Open source
