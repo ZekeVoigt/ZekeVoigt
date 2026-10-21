@@ -1,6 +1,6 @@
 # i'm Zeke 
 
-I am 20, graduated college and like building & researching cool things. Most of my work is around Agents both local and cloud based, with a little bit of cloud infra mixed in. I run a little bit of research on a lab I called Andromeda, focusing on two things, how can we make AI safe & how can we build great things with it.
+I am 20, graduated college and like building & researching cool things. Most of my work is around Agents both local and cloud based, I also work on RL, alignment & safety (verification) for autonomous agents.  I run a little bit of research on a lab I called Andromeda, focusing on two things, how can we make AI safe & how can we build great things with it.
 
 ## Reports
 
