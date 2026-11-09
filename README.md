@@ -16,4 +16,4 @@ I am 20, graduated college, work a full time job and like building & researching
 
 ## Activity
 
-<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=742c3163" alt="Activity: one square per day"></a>
+<a href="https://zekevoigt.github.io/ZekeVoigt/"><img src="assets/activity.svg?v=5330d2f7" alt="Activity: one square per day"></a>
